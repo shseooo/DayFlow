@@ -1,0 +1,635 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 70;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		00010010 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0001000F /* Assets.xcassets */; };
+		00010018 /* DayFlowApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00010017 /* DayFlowApp.swift */; };
+		0001001A /* ActivityRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00010019 /* ActivityRecord.swift */; };
+		0001001C /* WorkLogEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0001001B /* WorkLogEntry.swift */; };
+		0001001E /* AIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0001001D /* AIProvider.swift */; };
+		00010020 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0001001F /* AppSettings.swift */; };
+		00010022 /* ActivityCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00010021 /* ActivityCollector.swift */; };
+		00010024 /* AppSwitchCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00010023 /* AppSwitchCollector.swift */; };
+		00010026 /* TerminalCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00010025 /* TerminalCollector.swift */; };
+		00010028 /* BrowserCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00010027 /* BrowserCollector.swift */; };
+		0001002A /* GitCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00010029 /* GitCollector.swift */; };
+		0001002C /* FinderCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0001002B /* FinderCollector.swift */; };
+		0001002E /* AISummarizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0001002D /* AISummarizer.swift */; };
+		00010030 /* OpenAISummarizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0001002F /* OpenAISummarizer.swift */; };
+		00010032 /* AnthropicSummarizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00010031 /* AnthropicSummarizer.swift */; };
+		00010034 /* CollectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00010033 /* CollectionService.swift */; };
+		00010036 /* SummarizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00010035 /* SummarizationService.swift */; };
+		00010038 /* FileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00010037 /* FileService.swift */; };
+		0001003A /* ScheduleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00010039 /* ScheduleService.swift */; };
+		0001003C /* PermissionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0001003B /* PermissionService.swift */; };
+		0001003E /* MenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0001003D /* MenuBarView.swift */; };
+		00010040 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0001003F /* SettingsView.swift */; };
+		00010042 /* LogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00010041 /* LogService.swift */; };
+		00010044 /* ActivityLogStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00010043 /* ActivityLogStore.swift */; };
+		00010046 /* LaunchAtLoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00010045 /* LaunchAtLoginService.swift */; };
+		00010048 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 00010047 /* Localizable.xcstrings */; };
+		0001004A /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00010049 /* Localization.swift */; };
+		0001004C /* IdleCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0001004B /* IdleCollector.swift */; };
+		0001004E /* SystemEventCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0001004D /* SystemEventCollector.swift */; };
+		00010050 /* CalendarCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0001004F /* CalendarCollector.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C7CD81452FB20E2700D528F7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00010000 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 00010001;
+			remoteInfo = DayFlow;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		00010008 /* DayFlow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DayFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0001000F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		00010017 /* DayFlowApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayFlowApp.swift; sourceTree = "<group>"; };
+		00010019 /* ActivityRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityRecord.swift; sourceTree = "<group>"; };
+		0001001B /* WorkLogEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkLogEntry.swift; sourceTree = "<group>"; };
+		0001001D /* AIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIProvider.swift; sourceTree = "<group>"; };
+		0001001F /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		00010021 /* ActivityCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCollector.swift; sourceTree = "<group>"; };
+		00010023 /* AppSwitchCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSwitchCollector.swift; sourceTree = "<group>"; };
+		00010025 /* TerminalCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalCollector.swift; sourceTree = "<group>"; };
+		00010027 /* BrowserCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserCollector.swift; sourceTree = "<group>"; };
+		00010029 /* GitCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitCollector.swift; sourceTree = "<group>"; };
+		0001002B /* FinderCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderCollector.swift; sourceTree = "<group>"; };
+		0001002D /* AISummarizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AISummarizer.swift; sourceTree = "<group>"; };
+		0001002F /* OpenAISummarizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAISummarizer.swift; sourceTree = "<group>"; };
+		00010031 /* AnthropicSummarizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnthropicSummarizer.swift; sourceTree = "<group>"; };
+		00010033 /* CollectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionService.swift; sourceTree = "<group>"; };
+		00010035 /* SummarizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummarizationService.swift; sourceTree = "<group>"; };
+		00010037 /* FileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileService.swift; sourceTree = "<group>"; };
+		00010039 /* ScheduleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleService.swift; sourceTree = "<group>"; };
+		0001003B /* PermissionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionService.swift; sourceTree = "<group>"; };
+		0001003D /* MenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarView.swift; sourceTree = "<group>"; };
+		0001003F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		00010041 /* LogService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogService.swift; sourceTree = "<group>"; };
+		00010043 /* ActivityLogStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogStore.swift; sourceTree = "<group>"; };
+		00010045 /* LaunchAtLoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAtLoginService.swift; sourceTree = "<group>"; };
+		00010047 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		00010049 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
+		0001004B /* IdleCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdleCollector.swift; sourceTree = "<group>"; };
+		0001004D /* SystemEventCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemEventCollector.swift; sourceTree = "<group>"; };
+		0001004F /* CalendarCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollector.swift; sourceTree = "<group>"; };
+		00010051 /* DayFlow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DayFlow.entitlements; sourceTree = "<group>"; };
+		C7CD81412FB20E2700D528F7 /* DayFlowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DayFlowTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		C7CD81422FB20E2700D528F7 /* DayFlowTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = DayFlowTests; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		00010003 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C7CD813E2FB20E2700D528F7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		00010005 = {
+			isa = PBXGroup;
+			children = (
+				00010006 /* DayFlow */,
+				C7CD81422FB20E2700D528F7 /* DayFlowTests */,
+				C7254C842FB1EB6C00080489 /* Frameworks */,
+				00010007 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		00010006 /* DayFlow */ = {
+			isa = PBXGroup;
+			children = (
+				00010011 /* App */,
+				00010012 /* Models */,
+				00010013 /* Collectors */,
+				00010014 /* AI */,
+				00010015 /* Services */,
+				00010016 /* Views */,
+				0001000F /* Assets.xcassets */,
+				00010047 /* Localizable.xcstrings */,
+				00010051 /* DayFlow.entitlements */,
+			);
+			path = DayFlow;
+			sourceTree = "<group>";
+		};
+		00010007 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				00010008 /* DayFlow.app */,
+				C7CD81412FB20E2700D528F7 /* DayFlowTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		00010011 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				00010017 /* DayFlowApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		00010012 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				00010019 /* ActivityRecord.swift */,
+				0001001B /* WorkLogEntry.swift */,
+				0001001D /* AIProvider.swift */,
+				0001001F /* AppSettings.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		00010013 /* Collectors */ = {
+			isa = PBXGroup;
+			children = (
+				00010021 /* ActivityCollector.swift */,
+				00010023 /* AppSwitchCollector.swift */,
+				00010025 /* TerminalCollector.swift */,
+				00010027 /* BrowserCollector.swift */,
+				00010029 /* GitCollector.swift */,
+				0001002B /* FinderCollector.swift */,
+				0001004B /* IdleCollector.swift */,
+				0001004D /* SystemEventCollector.swift */,
+				0001004F /* CalendarCollector.swift */,
+			);
+			path = Collectors;
+			sourceTree = "<group>";
+		};
+		00010014 /* AI */ = {
+			isa = PBXGroup;
+			children = (
+				0001002D /* AISummarizer.swift */,
+				0001002F /* OpenAISummarizer.swift */,
+				00010031 /* AnthropicSummarizer.swift */,
+			);
+			path = AI;
+			sourceTree = "<group>";
+		};
+		00010015 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				00010033 /* CollectionService.swift */,
+				00010035 /* SummarizationService.swift */,
+				00010037 /* FileService.swift */,
+				00010039 /* ScheduleService.swift */,
+				0001003B /* PermissionService.swift */,
+				00010041 /* LogService.swift */,
+				00010043 /* ActivityLogStore.swift */,
+				00010045 /* LaunchAtLoginService.swift */,
+				00010049 /* Localization.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		00010016 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0001003D /* MenuBarView.swift */,
+				0001003F /* SettingsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C7254C842FB1EB6C00080489 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		00010001 /* DayFlow */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0001000C /* Build configuration list for PBXNativeTarget "DayFlow" */;
+			buildPhases = (
+				00010002 /* Sources */,
+				00010003 /* Frameworks */,
+				00010004 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DayFlow;
+			productName = DayFlow;
+			productReference = 00010008 /* DayFlow.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C7CD81402FB20E2700D528F7 /* DayFlowTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C7CD81492FB20E2700D528F7 /* Build configuration list for PBXNativeTarget "DayFlowTests" */;
+			buildPhases = (
+				C7CD813D2FB20E2700D528F7 /* Sources */,
+				C7CD813E2FB20E2700D528F7 /* Frameworks */,
+				C7CD813F2FB20E2700D528F7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C7CD81462FB20E2700D528F7 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				C7CD81422FB20E2700D528F7 /* DayFlowTests */,
+			);
+			name = DayFlowTests;
+			packageProductDependencies = (
+			);
+			productName = DayFlowTests;
+			productReference = C7CD81412FB20E2700D528F7 /* DayFlowTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		00010000 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2640;
+				LastUpgradeCheck = 2640;
+				TargetAttributes = {
+					00010001 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+					C7CD81402FB20E2700D528F7 = {
+						CreatedOnToolsVersion = 26.4.1;
+						TestTargetID = 00010001;
+					};
+				};
+			};
+			buildConfigurationList = 00010009 /* Build configuration list for PBXProject "DayFlow" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				ko,
+				ja,
+				"zh-Hans",
+			);
+			mainGroup = 00010005;
+			productRefGroup = 00010007 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				00010001 /* DayFlow */,
+				C7CD81402FB20E2700D528F7 /* DayFlowTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		00010004 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00010010 /* Assets.xcassets in Resources */,
+				00010048 /* Localizable.xcstrings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C7CD813F2FB20E2700D528F7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		00010002 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00010018 /* DayFlowApp.swift in Sources */,
+				0001001A /* ActivityRecord.swift in Sources */,
+				0001001C /* WorkLogEntry.swift in Sources */,
+				0001001E /* AIProvider.swift in Sources */,
+				00010020 /* AppSettings.swift in Sources */,
+				00010022 /* ActivityCollector.swift in Sources */,
+				00010024 /* AppSwitchCollector.swift in Sources */,
+				00010026 /* TerminalCollector.swift in Sources */,
+				00010028 /* BrowserCollector.swift in Sources */,
+				0001002A /* GitCollector.swift in Sources */,
+				0001002C /* FinderCollector.swift in Sources */,
+				0001004C /* IdleCollector.swift in Sources */,
+				0001004E /* SystemEventCollector.swift in Sources */,
+				00010050 /* CalendarCollector.swift in Sources */,
+				0001002E /* AISummarizer.swift in Sources */,
+				00010030 /* OpenAISummarizer.swift in Sources */,
+				00010032 /* AnthropicSummarizer.swift in Sources */,
+				00010034 /* CollectionService.swift in Sources */,
+				00010036 /* SummarizationService.swift in Sources */,
+				00010038 /* FileService.swift in Sources */,
+				0001003A /* ScheduleService.swift in Sources */,
+				0001003C /* PermissionService.swift in Sources */,
+				00010042 /* LogService.swift in Sources */,
+				00010044 /* ActivityLogStore.swift in Sources */,
+				00010046 /* LaunchAtLoginService.swift in Sources */,
+				0001004A /* Localization.swift in Sources */,
+				0001003E /* MenuBarView.swift in Sources */,
+				00010040 /* SettingsView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C7CD813D2FB20E2700D528F7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C7CD81462FB20E2700D528F7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 00010001 /* DayFlow */;
+			targetProxy = C7CD81452FB20E2700D528F7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0001000A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		0001000B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		0001000D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = DayFlow/DayFlow.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = DayFlow;
+				INFOPLIST_KEY_LSMinimumSystemVersion = "$(MACOSX_DEPLOYMENT_TARGET)";
+				INFOPLIST_KEY_NSCalendarsFullAccessUsageDescription = "DayFlow uses your calendar events as context for work-log summaries.";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 DayFlow. All rights reserved.";
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dayflow.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		0001000E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = DayFlow/DayFlow.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = DayFlow;
+				INFOPLIST_KEY_LSMinimumSystemVersion = "$(MACOSX_DEPLOYMENT_TARGET)";
+				INFOPLIST_KEY_NSCalendarsFullAccessUsageDescription = "DayFlow uses your calendar events as context for work-log summaries.";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 DayFlow. All rights reserved.";
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dayflow.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		C7CD81472FB20E2700D528F7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GENERATE_INFOPLIST_FILE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.4;
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = shseooo.DayFlowTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DayFlow.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DayFlow";
+			};
+			name = Debug;
+		};
+		C7CD81482FB20E2700D528F7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GENERATE_INFOPLIST_FILE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.4;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = shseooo.DayFlowTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DayFlow.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DayFlow";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		00010009 /* Build configuration list for PBXProject "DayFlow" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0001000A /* Debug */,
+				0001000B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0001000C /* Build configuration list for PBXNativeTarget "DayFlow" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0001000D /* Debug */,
+				0001000E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C7CD81492FB20E2700D528F7 /* Build configuration list for PBXNativeTarget "DayFlowTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C7CD81472FB20E2700D528F7 /* Debug */,
+				C7CD81482FB20E2700D528F7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 00010000 /* Project object */;
+}
