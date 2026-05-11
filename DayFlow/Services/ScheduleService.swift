@@ -55,6 +55,16 @@ class ScheduleService: ObservableObject {
         await performSummary(mode: .manual)
     }
 
+    /// 지정된 날짜(0시 ~ 23:59:59)의 빈 슬롯을 모두 요약한다.
+    /// 그 날짜에 활동 로그가 없으면 모든 슬롯이 "활동 없음"으로 스킵되어 .md가 안 만들어진다.
+    func runSummary(forDate date: Date) async {
+        let cal = Calendar.current
+        let start = cal.startOfDay(for: date)
+        guard let nextDay = cal.date(byAdding: .day, value: 1, to: start),
+              let endOfDay = cal.date(byAdding: .second, value: -1, to: nextDay) else { return }
+        await performSummary(mode: .manual, endTime: endOfDay)
+    }
+
     /// 진행 중 요약 취소
     func cancelCurrentSummary() {
         currentTask?.cancel()
@@ -69,13 +79,20 @@ class ScheduleService: ObservableObject {
 
     private func scheduleHourly() {
         hourlyTimer?.invalidate()
+        // 매시간 59분 59초에 fire (시간 경계 직전).
+        // 정각보다 1초 일찍 도는 게 핵심:
+        //   - 23:59:59 fire → 그 날 마지막 슬롯(23:00-23:59:59)까지 빠짐없이 처리
+        //   - 자정 trigger 누락 위험 없음
         let now = Date()
-        var comps = Calendar.current.dateComponents([.year, .month, .day, .hour], from: now)
-        comps.hour = (comps.hour ?? 0) + 1
-        comps.minute = 0
-        comps.second = 0
-        guard let nextHour = Calendar.current.date(from: comps) else { return }
-        let interval = max(nextHour.timeIntervalSinceNow, 1)
+        let cal = Calendar.current
+        var comps = cal.dateComponents([.year, .month, .day, .hour], from: now)
+        comps.minute = 59
+        comps.second = 59
+        guard var nextFire = cal.date(from: comps) else { return }
+        if nextFire <= now {
+            nextFire.addTimeInterval(3600)
+        }
+        let interval = max(nextFire.timeIntervalSinceNow, 1)
         hourlyTimer = Timer.scheduledTimer(withTimeInterval: interval, repeats: false) { [weak self] _ in
             guard let self = self else { return }
             Task {
@@ -85,8 +102,9 @@ class ScheduleService: ObservableObject {
         }
     }
 
-    /// 매시간 0분에 호출됨.
-    /// 파일 유무 관계없이 오늘 0시부터 현재까지 비어있는 모든 시간 슬롯을 채운다.
+    /// 매시간 59분 59초에 호출됨.
+    /// 그 시점 endTime 기준으로 오늘 0시부터 비어있는 모든 시간 슬롯을 채운다.
+    /// 23:59:59 fire가 그 날 마지막 슬롯까지 처리하므로 별도의 자정 보충 로직 없음.
     private func runHourlyTrigger() async {
         await performSummary(mode: .hourly)
     }
@@ -113,7 +131,8 @@ class ScheduleService: ObservableObject {
         }
     }
 
-    private func performSummary(mode: PerformMode) async {
+    /// endTime이 nil이면 `Date()` 사용. 자정 fire 시 전날 보충용으로 전날 23:59:59 같은 값 전달.
+    private func performSummary(mode: PerformMode, endTime: Date? = nil) async {
         // 중복 시작 방지
         if currentTask != nil {
             await MainActor.run { self.statusMessage = L10n.t("status.already_running") }
@@ -128,7 +147,7 @@ class ScheduleService: ObservableObject {
         let task = Task { [weak self] in
             guard let self = self else { return }
             do {
-                try await self.executeSummary(mode: mode)
+                try await self.executeSummary(mode: mode, endTime: endTime ?? Date())
                 await MainActor.run {
                     self.statusMessage = L10n.t("status.completed", mode.label, self.formatTime(Date()))
                     self.isSummarizing = false
@@ -152,9 +171,8 @@ class ScheduleService: ObservableObject {
         currentTask = task
     }
 
-    private func executeSummary(mode: PerformMode) async throws {
-        let now = Date()
-        try await executeHourlySlots(through: now, kind: mode.sectionKind)
+    private func executeSummary(mode: PerformMode, endTime: Date = Date()) async throws {
+        try await executeHourlySlots(through: endTime, kind: mode.sectionKind)
     }
 
     /// 오늘 0시부터 `endTime`까지 1시간 단위로 슬롯을 만들어 각각 요약.

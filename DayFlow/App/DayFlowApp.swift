@@ -17,6 +17,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private var menuPanel: NSPanel?
     private var globalEventMonitor: Any?
     private var settingsWindowController: NSWindowController?
+    private var dateSummaryWindowController: NSWindowController?
 
     private let collectionService = CollectionService()
     private let summarizationService = SummarizationService()
@@ -75,6 +76,36 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             name: NSNotification.Name("DayFlowSettingsUpdated"),
             object: nil
         )
+        // 날짜 지정 요약 윈도우 알림 구독
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(openDateSummaryWindow),
+            name: NSNotification.Name("DayFlowOpenDateSummary"),
+            object: nil
+        )
+    }
+
+    @objc private func openDateSummaryWindow() {
+        closeMenu()
+
+        if let wc = dateSummaryWindowController, let window = wc.window {
+            NSApp.activate(ignoringOtherApps: true)
+            centerOnActiveScreen(window)
+            window.makeKeyAndOrderFront(nil)
+            return
+        }
+
+        let view = DateSummaryView(scheduleService: scheduleService)
+        let hosting = NSHostingController(rootView: view)
+        let window = NSWindow(contentViewController: hosting)
+        window.title = L10n.t("window.date_summary_title")
+        window.styleMask = [.titled, .closable]
+        window.isReleasedWhenClosed = false
+
+        dateSummaryWindowController = NSWindowController(window: window)
+        NSApp.activate(ignoringOtherApps: true)
+        dateSummaryWindowController?.showWindow(nil)
+        centerOnActiveScreen(window)
     }
 
     @objc private func settingsUpdated() {

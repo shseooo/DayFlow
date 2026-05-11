@@ -47,6 +47,47 @@
         "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "退出" } }
       }
     },
+    "menu.summarize_by_date" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "날짜 지정 요약..." } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Summarize by Date..." } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "日付指定で要約..." } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "按日期摘要..." } }
+      }
+    },
+    "window.date_summary_title" : {
+      "localizations" : {
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "날짜 지정 요약" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Summarize by Date" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "日付指定で要約" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "按日期摘要" } }
+      }
+    },
+    "date_summary.pick_date" : {
+      "localizations" : {
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "요약할 날짜 선택" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Pick a date to summarize" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "要約する日付を選択" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "选择要摘要的日期" } }
+      }
+    },
+    "date_summary.generate" : {
+      "localizations" : {
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "요약 생성" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Generate Summary" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "要約を生成" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "生成摘要" } }
+      }
+    },
+    "date_summary.no_logs" : {
+      "localizations" : {
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "해당 날짜의 활동 로그가 없습니다." } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "No activity logs for the selected date." } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "選択した日付のアクティビティログがありません。" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "所选日期没有活动日志。" } }
+      }
+    },
 
     "settings.ai" : {
       "localizations" : {

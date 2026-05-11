@@ -13,7 +13,7 @@ struct MenuBarView: View {
             VisualEffectBackground(material: .menu, blendingMode: .behindWindow)
             content
         }
-        .frame(width: 220, height: 140)
+        .frame(width: 220, height: 170)
         .clipShape(RoundedRectangle(cornerRadius: 8))
         .environment(\.locale, locale)
     }
@@ -46,6 +46,13 @@ struct MenuBarView: View {
 
             MenuRow(title: "menu.open_today_worklog") {
                 openTodayWorklog()
+            }
+
+            MenuRow(title: "menu.summarize_by_date") {
+                NotificationCenter.default.post(
+                    name: NSNotification.Name("DayFlowOpenDateSummary"),
+                    object: nil
+                )
             }
 
             MenuRow(title: "menu.settings") {

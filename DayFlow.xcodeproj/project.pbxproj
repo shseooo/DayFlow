@@ -37,6 +37,7 @@
 		0001004C /* IdleCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0001004B /* IdleCollector.swift */; };
 		0001004E /* SystemEventCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0001004D /* SystemEventCollector.swift */; };
 		00010050 /* CalendarCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0001004F /* CalendarCollector.swift */; };
+		00010053 /* DateSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00010052 /* DateSummaryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,7 @@
 		0001004D /* SystemEventCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemEventCollector.swift; sourceTree = "<group>"; };
 		0001004F /* CalendarCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollector.swift; sourceTree = "<group>"; };
 		00010051 /* DayFlow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DayFlow.entitlements; sourceTree = "<group>"; };
+		00010052 /* DateSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSummaryView.swift; sourceTree = "<group>"; };
 		C7CD81412FB20E2700D528F7 /* DayFlowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DayFlowTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -208,6 +210,7 @@
 			children = (
 				0001003D /* MenuBarView.swift */,
 				0001003F /* SettingsView.swift */,
+				00010052 /* DateSummaryView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -340,6 +343,7 @@
 				0001004C /* IdleCollector.swift in Sources */,
 				0001004E /* SystemEventCollector.swift in Sources */,
 				00010050 /* CalendarCollector.swift in Sources */,
+				00010053 /* DateSummaryView.swift in Sources */,
 				0001002E /* AISummarizer.swift in Sources */,
 				00010030 /* OpenAISummarizer.swift in Sources */,
 				00010032 /* AnthropicSummarizer.swift in Sources */,
