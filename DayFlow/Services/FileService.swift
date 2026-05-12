@@ -55,11 +55,17 @@ class FileService {
     static func sectionExists(periodStart: Date, periodEnd: Date, in directory: String) -> Bool {
         let path = filePath(for: periodEnd, in: directory)
         guard let content = try? String(contentsOfFile: path, encoding: .utf8) else { return false }
-        let timeFormatter = DateFormatter()
-        timeFormatter.dateFormat = "HH:mm"
-        let s = timeFormatter.string(from: periodStart)
-        let e = timeFormatter.string(from: periodEnd)
+        let s = formatHeaderTime(periodStart)
+        let e = formatHeaderTime(periodEnd)
         return content.contains("[\(s) - \(e)]")
+    }
+
+    /// 헤더 시각 표기 ("HH:mm"). 초는 표시하지 않음.
+    /// 즉 endTime이 09:59:59여도 "09:59"로 표기됨.
+    private static func formatHeaderTime(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        return formatter.string(from: date)
     }
 
     /// 요약 섹션 1건을 해당 날짜 파일에 추가한다.
@@ -76,10 +82,8 @@ class FileService {
         try ensureDirectoryExists(directory)
 
         let path = filePath(for: periodEnd, in: directory)
-        let timeFormatter = DateFormatter()
-        timeFormatter.dateFormat = "HH:mm"
-        let s = timeFormatter.string(from: periodStart)
-        let e = timeFormatter.string(from: periodEnd)
+        let s = formatHeaderTime(periodStart)
+        let e = formatHeaderTime(periodEnd)
 
         let sectionHeader = "## [\(s) - \(e)] \(kind.label(for: outputLanguage))"
         let section = "\n\n" + sectionHeader + "\n\n" + body.trimmingCharacters(in: .whitespacesAndNewlines) + "\n"

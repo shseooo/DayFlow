@@ -105,7 +105,18 @@ class ScheduleService: ObservableObject {
     /// 매시간 59분 59초에 호출됨.
     /// 그 시점 endTime 기준으로 오늘 0시부터 비어있는 모든 시간 슬롯을 채운다.
     /// 23:59:59 fire가 그 날 마지막 슬롯까지 처리하므로 별도의 자정 보충 로직 없음.
+    ///
+    /// **Sleep wake catch-up fire 방어**: timer가 sleep 동안 missed fire를 wake 직후
+    /// 임의 시각(예: 09:43)에 한 번 catch up. 그 시점 fire는 partial slot을 만들어
+    /// 중복 헤더(`[09:00 - 09:43]` + `[09:00 - 10:00]`)를 야기. 정시 boundary(minute >= 55)
+    /// fire만 정상으로 간주하고, 그 외는 skip — 다음 정상 fire가 빈 슬롯을 채워줌.
     private func runHourlyTrigger() async {
+        let now = Date()
+        let minute = Calendar.current.component(.minute, from: now)
+        guard minute >= 55 else {
+            LogService.info("Hourly catch-up fire skipped (minute=\(minute))")
+            return
+        }
         await performSummary(mode: .hourly)
     }
 
