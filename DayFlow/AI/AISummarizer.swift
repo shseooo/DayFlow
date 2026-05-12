@@ -59,7 +59,7 @@ enum SummaryPromptBuilder {
         let start = formatter.string(from: period.start)
         let end = formatter.string(from: period.end)
 
-        let (sectionSummary, sectionHighlights, sectionTools, sectionOpen) = sectionTitles(for: outputLanguage)
+        let (sectionSummary, sectionHighlights, sectionTools) = sectionTitles(for: outputLanguage)
 
         if outputLanguage == "Korean" {
             return """
@@ -71,7 +71,7 @@ enum SummaryPromptBuilder {
             \(start)부터 \(end)까지의 사용자 작업을 아래 활동 로그를 근거로 요약하세요.
 
             # 출력 형식
-            정확히 다음 네 개의 Markdown 섹션을, 다음 한국어 제목 그대로 사용하여 작성하세요:
+            정확히 다음 세 개의 Markdown 섹션을, 다음 한국어 제목 그대로 사용하여 작성하세요:
 
             \(sectionSummary)
             2~3줄: 사용자가 전반적으로 무엇을 했고, 명백한 목표가 무엇이었는지.
@@ -81,9 +81,6 @@ enum SummaryPromptBuilder {
 
             \(sectionTools)
             세션을 정의한 앱, 브라우저, 터미널 명령, 저장소.
-
-            \(sectionOpen)
-            미완료, 블록된 항목, 후속 조치가 필요한 항목. 해당 사항이 없으면 이 섹션은 통째로 생략하세요.
 
             # 스타일
             - 모든 섹션 합쳐 총 6~12개의 글머리.
@@ -106,7 +103,7 @@ enum SummaryPromptBuilder {
         Summarize the user's work between \(start) and \(end), using the activity log below as evidence.
 
         # Output format
-        Use exactly these four Markdown sections, in this order, with these exact \(outputLanguage) titles:
+        Use exactly these three Markdown sections, in this order, with these exact \(outputLanguage) titles:
 
         \(sectionSummary)
         2–3 lines: what the user worked on overall and the apparent goal.
@@ -116,9 +113,6 @@ enum SummaryPromptBuilder {
 
         \(sectionTools)
         Apps, browsers, terminal commands, repositories that defined the session.
-
-        \(sectionOpen)
-        Anything that looks unfinished, blocked, or worth following up. Omit this section entirely if nothing fits.
 
         # Style
         - 6–12 bullet points total across all sections.
@@ -202,22 +196,22 @@ enum SummaryPromptBuilder {
     }
 
     /// 주요 언어별 섹션 제목 (모델이 영어 제목을 그대로 베끼지 않도록 사전에 번역해 주입)
-    private static func sectionTitles(for language: String) -> (String, String, String, String) {
+    private static func sectionTitles(for language: String) -> (String, String, String) {
         switch language {
         case "Korean":
-            return ("## 요약", "## 주요 진행 사항", "## 도구 및 맥락", "## 미결 항목")
+            return ("## 요약", "## 주요 진행 사항", "## 도구 및 맥락")
         case "Japanese":
-            return ("## サマリー", "## ハイライト", "## ツールと文脈", "## 未解決事項")
+            return ("## サマリー", "## ハイライト", "## ツールと文脈")
         case "Chinese":
-            return ("## 摘要", "## 重点进展", "## 工具与上下文", "## 未决事项")
+            return ("## 摘要", "## 重点进展", "## 工具与上下文")
         case "French":
-            return ("## Résumé", "## Points forts", "## Outils et contexte", "## Points en suspens")
+            return ("## Résumé", "## Points forts", "## Outils et contexte")
         case "German":
-            return ("## Zusammenfassung", "## Highlights", "## Tools & Kontext", "## Offene Punkte")
+            return ("## Zusammenfassung", "## Highlights", "## Tools & Kontext")
         case "Spanish":
-            return ("## Resumen", "## Aspectos destacados", "## Herramientas y contexto", "## Pendientes")
+            return ("## Resumen", "## Aspectos destacados", "## Herramientas y contexto")
         default:
-            return ("## Summary", "## Highlights", "## Tools & Context", "## Open Questions")
+            return ("## Summary", "## Highlights", "## Tools & Context")
         }
     }
 
