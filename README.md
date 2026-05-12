@@ -71,7 +71,7 @@ cd DayFlow
 
 OpenAI 호환 API를 제공하는 로컬 서버를 사용합니다.
 
-**서버**: [omlx](https://github.com/...) — Apple Silicon의 MLX 가속을 활용한 OpenAI 호환 서버
+**서버**: [omlx](https://omlx.ai/) — Apple Silicon의 MLX 가속을 활용한 OpenAI 호환 서버
 
 **모델 추천**: `mlx-community/gemma-4-e2b-it-4bit`
 
