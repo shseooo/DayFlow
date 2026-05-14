@@ -18,7 +18,7 @@ actor AnthropicSummarizer: AISummarizer {
         period: DateInterval,
         outputLanguage: String
     ) async throws -> String {
-        let activityText = SummaryPromptBuilder.formatActivities(activities)
+        let activityText = ActivityCompactor.format(activities)
         let userPrompt = SummaryPromptBuilder.userPrompt(
             activities: activityText,
             period: period,
@@ -63,6 +63,6 @@ actor AnthropicSummarizer: AISummarizer {
             throw AISummaryError.parseError("응답 파싱 실패")
         }
 
-        return SummaryPromptBuilder.cleanResponse(text)
+        return SummaryResponseSanitizer.clean(text)
     }
 }

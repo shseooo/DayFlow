@@ -19,7 +19,7 @@ actor OpenAISummarizer: AISummarizer {
         period: DateInterval,
         outputLanguage: String
     ) async throws -> String {
-        let activityText = SummaryPromptBuilder.formatActivities(activities)
+        let activityText = ActivityCompactor.format(activities)
         let userPrompt = SummaryPromptBuilder.userPrompt(
             activities: activityText,
             period: period,
@@ -73,7 +73,7 @@ actor OpenAISummarizer: AISummarizer {
             throw AISummaryError.parseError("응답 파싱 실패")
         }
 
-        return SummaryPromptBuilder.cleanResponse(content)
+        return SummaryResponseSanitizer.clean(content)
     }
 
     /// endpoint 가 `/v1`/`/chat/completions` 등 어느 형태든 정상 동작하도록 URL 조합

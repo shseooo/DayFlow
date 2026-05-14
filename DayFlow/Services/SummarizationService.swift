@@ -42,11 +42,11 @@ class SummarizationService {
         }
 
         // 1) 압축
-        let compacted = SummaryPromptBuilder.compact(activities)
+        let compacted = ActivityCompactor.compact(activities)
         LogService.info("Summarization: \(activities.count) → \(compacted.count) records after compaction")
 
         // 2) 토큰 추정
-        let formatted = SummaryPromptBuilder.formatActivities(compacted)
+        let formatted = ActivityCompactor.format(compacted)
         let estimated = estimateTokens(formatted)
         LogService.info("Summarization: estimated \(estimated) input tokens (limit \(maxInputTokens))")
 

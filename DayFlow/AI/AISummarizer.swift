@@ -10,11 +10,14 @@ protocol AISummarizer {
     ) async throws -> String
 }
 
-/// 공용 프롬프트 빌더 (영어 시스템/유저 프롬프트, 출력 언어만 동적 주입)
+// MARK: - SummaryPromptBuilder
+
+/// 시스템/유저 프롬프트 빌더.
+///
+/// 출력 언어 inertia를 끊기 위해, 출력 언어가 영어가 아니면 시스템 프롬프트 자체도
+/// 그 언어로 작성한다.
 enum SummaryPromptBuilder {
     /// 출력 언어를 포함하는 시스템 프롬프트.
-    /// 모델의 응답 언어 inertia를 끊기 위해, 출력 언어가 영어가 아니면
-    /// 시스템 프롬프트 자체도 그 언어로 작성한다.
     ///
     /// Qwen3 thinking이 켜져있으면 `<think>` 블록 안에서 토큰을 다 써버려
     /// 최종 답변이 비어버리는 케이스 발생. 비-Qwen 모델은 이 토큰을 무시.
@@ -129,8 +132,32 @@ enum SummaryPromptBuilder {
             """
     }
 
-    /// 응답 후처리: 사고 과정/메타 코멘트를 제거하고 실제 markdown 본문만 추출
-    static func cleanResponse(_ raw: String) -> String {
+    /// 주요 언어별 섹션 제목 (모델이 영어 제목을 그대로 베끼지 않도록 사전에 번역해 주입)
+    private static func sectionTitles(for language: String) -> (String, String, String) {
+        switch language {
+        case "Korean":
+            return ("## 요약", "## 주요 진행 사항", "## 도구 및 맥락")
+        case "Japanese":
+            return ("## サマリー", "## ハイライト", "## ツールと文脈")
+        case "Chinese":
+            return ("## 摘要", "## 重点进展", "## 工具与上下文")
+        case "French":
+            return ("## Résumé", "## Points forts", "## Outils et contexte")
+        case "German":
+            return ("## Zusammenfassung", "## Highlights", "## Tools & Kontext")
+        case "Spanish":
+            return ("## Resumen", "## Aspectos destacados", "## Herramientas y contexto")
+        default:
+            return ("## Summary", "## Highlights", "## Tools & Context")
+        }
+    }
+}
+
+// MARK: - SummaryResponseSanitizer
+
+/// 모델 응답에서 사고 과정/preamble 을 제거하고 최종 Markdown 본문만 추출.
+enum SummaryResponseSanitizer {
+    static func clean(_ raw: String) -> String {
         var text = raw
 
         // 1. <think>...</think> 블록 제거 (DeepSeek R1, QwQ 등)
@@ -198,39 +225,15 @@ enum SummaryPromptBuilder {
         ]
         return markers.contains { head.contains($0) }
     }
+}
 
-    /// 주요 언어별 섹션 제목 (모델이 영어 제목을 그대로 베끼지 않도록 사전에 번역해 주입)
-    private static func sectionTitles(for language: String) -> (String, String, String) {
-        switch language {
-        case "Korean":
-            return ("## 요약", "## 주요 진행 사항", "## 도구 및 맥락")
-        case "Japanese":
-            return ("## サマリー", "## ハイライト", "## ツールと文脈")
-        case "Chinese":
-            return ("## 摘要", "## 重点进展", "## 工具与上下文")
-        case "French":
-            return ("## Résumé", "## Points forts", "## Outils et contexte")
-        case "German":
-            return ("## Zusammenfassung", "## Highlights", "## Tools & Kontext")
-        case "Spanish":
-            return ("## Resumen", "## Aspectos destacados", "## Herramientas y contexto")
-        default:
-            return ("## Summary", "## Highlights", "## Tools & Context")
-        }
-    }
+// MARK: - ActivityCompactor
 
-    /// ActivityRecord 목록을 프롬프트용 텍스트로 변환
-    static func formatActivities(_ activities: [ActivityRecord]) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm"
-        formatter.locale = Locale(identifier: "en_US_POSIX")
-        return activities.map { record in
-            let time = formatter.string(from: record.timestamp)
-            let detail = record.detail.isEmpty ? "" : " (\(record.detail))"
-            return "- [\(time)] [\(record.type.rawValue)] \(record.title)\(detail)"
-        }.joined(separator: "\n")
-    }
-
+/// 활동 로그 압축 + 텍스트 직렬화.
+///
+/// 모델에 보내기 전에 노이즈를 제거하고, 토큰 추정/프롬프트 입력 양쪽에서 쓰는
+/// 텍스트 포맷을 단일 진입점으로 제공한다.
+enum ActivityCompactor {
     /// 활동 압축: 노이즈를 제거하고 신호만 남긴다.
     ///
     /// 압축 규칙:
@@ -279,6 +282,18 @@ enum SummaryPromptBuilder {
         }
 
         return dedupeWithinWindow(result, windowSeconds: 300)
+    }
+
+    /// ActivityRecord 목록을 프롬프트용 텍스트로 변환
+    static func format(_ activities: [ActivityRecord]) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        return activities.map { record in
+            let time = formatter.string(from: record.timestamp)
+            let detail = record.detail.isEmpty ? "" : " (\(record.detail))"
+            return "- [\(time)] [\(record.type.rawValue)] \(record.title)\(detail)"
+        }.joined(separator: "\n")
     }
 
     private static func isLowSignal(_ record: ActivityRecord) -> Bool {

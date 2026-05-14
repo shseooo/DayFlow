@@ -7,6 +7,11 @@ import Combine
 /// - **매시간 0분(hourly)**: 직전 1시간 요약을 `yyyy-MM-dd.md`에 append.
 ///   단, 그 날 파일이 아직 없으면 오늘 0시~지금까지 전체 요약(시간 슬롯별)을 작성.
 /// - **수동(manual)**: 메뉴 "지금 요약" → 오늘 0시~지금까지 시간 슬롯별 요약.
+///
+/// 책임 분리:
+/// - `HourlySlotPlan` — 슬롯 생성 (순수 함수)
+/// - `SummaryExecutor` — 슬롯 시퀀스 실행
+/// - `ScheduleService` — 타이머 + 상태 발행 + 진행 task 라이프사이클 관리
 class ScheduleService: ObservableObject {
     @Published var statusMessage: String = ""
     @Published var isSummarizing: Bool = false
@@ -153,12 +158,21 @@ class ScheduleService: ObservableObject {
         let task = Task { [weak self] in
             guard let self = self else { return }
             do {
-                let processed = try await self.executeSummary(mode: mode, endTime: endTime ?? Date())
+                let processed = try await SummaryExecutor.runHourlySlots(
+                    through: endTime ?? Date(),
+                    kind: mode.sectionKind,
+                    collectionService: self.collectionService,
+                    summarizationService: self.summarizationService,
+                    settings: self.settings,
+                    onStatus: { [weak self] message in
+                        await MainActor.run { self?.statusMessage = message }
+                    }
+                )
                 await MainActor.run {
                     if processed == 0 {
                         self.statusMessage = L10n.t("status.no_pending_slots")
                     } else {
-                        self.statusMessage = L10n.t("status.completed", mode.label, self.formatTime(Date()))
+                        self.statusMessage = L10n.t("status.completed", mode.label, Self.formatTime(Date()))
                     }
                     self.isSummarizing = false
                     self.currentTask = nil
@@ -181,18 +195,29 @@ class ScheduleService: ObservableObject {
         currentTask = task
     }
 
-    /// 새로 작성된 슬롯 수 반환. 0이면 모두 skip 또는 슬롯 없음.
-    private func executeSummary(mode: PerformMode, endTime: Date = Date()) async throws -> Int {
-        try await executeHourlySlots(through: endTime, kind: mode.sectionKind)
+    private func reloadSettings() {
+        self.settings = AppSettings.load()
+        summarizationService.configure(with: settings.aiProvider)
     }
 
-    /// 시간 슬롯 1건. start..end 범위, hour는 그 시간의 0~23 인덱스.
-    struct HourlySlot: Equatable {
-        let start: Date
-        let end: Date
-        let hour: Int
+    fileprivate static func formatTime(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        return formatter.string(from: date)
     }
+}
 
+// MARK: - HourlySlotPlan
+
+/// 시간 슬롯 1건. start..end 범위, hour는 그 시간의 0~23 인덱스.
+struct HourlySlot: Equatable {
+    let start: Date
+    let end: Date
+    let hour: Int
+}
+
+/// 하루를 시간 단위 슬롯으로 분할하는 순수 로직.
+enum HourlySlotPlan {
     /// `endTime` 까지 1시간 단위로 슬롯 생성. **완료된 시간만** (`next <= now`) 포함.
     /// partial 슬롯(현재 진행 중인 시간) 제외.
     ///
@@ -201,7 +226,7 @@ class ScheduleService: ObservableObject {
     /// - 수동 at 14:19 (now=14:19) → endTime=14:19 → hours 0..13 (hour 14는 `next=15:00 > now` 제외)
     /// - 수동 at 00:30 (now=00:30) → hour 0의 `next=01:00 > 00:30` → 빈 배열
     /// - 과거 날짜 endOfDay 23:59:59 (now=오늘) → hour 23의 `next=다음날 00:00 <= now` → 포함
-    static func generateSlots(through endTime: Date, now: Date, calendar: Calendar = .current) -> [HourlySlot] {
+    static func slots(through endTime: Date, now: Date, calendar: Calendar = .current) -> [HourlySlot] {
         let day = calendar.startOfDay(for: endTime)
         var slots: [HourlySlot] = []
         var cursor = day
@@ -215,15 +240,30 @@ class ScheduleService: ObservableObject {
         }
         return slots
     }
+}
+
+// MARK: - SummaryExecutor
+
+/// 슬롯 시퀀스를 실행해 요약을 생성하고 파일에 append.
+/// 상태 변경은 `onStatus` 콜백으로 외부에 위임 — 타이머/Task/Publisher 와는 무관.
+enum SummaryExecutor {
+    typealias StatusReporter = (String) async -> Void
 
     /// 오늘 0시부터 `endTime`까지 1시간 단위로 슬롯 생성.
-    /// **완료된 시간만** 처리 (`next <= now`). partial 슬롯(현재 진행 중인 시간) 제외.
-    /// state store에 이미 마킹된 슬롯은 skip. 성공 시 모드 무관하게 마킹.
+    /// **완료된 시간만** 처리. state store에 이미 마킹된 슬롯은 skip.
+    /// 성공 시 모드 무관하게 마킹.
     /// - Returns: 새로 요약 작성된 슬롯 수 (skip은 카운트 안 함).
-    private func executeHourlySlots(through endTime: Date, kind: FileService.SectionKind) async throws -> Int {
+    static func runHourlySlots(
+        through endTime: Date,
+        kind: FileService.SectionKind,
+        collectionService: CollectionService,
+        summarizationService: SummarizationService,
+        settings: AppSettings,
+        onStatus: @escaping StatusReporter
+    ) async throws -> Int {
         let calendar = Calendar.current
         let day = calendar.startOfDay(for: endTime)
-        let allSlots = Self.generateSlots(through: endTime, now: Date(), calendar: calendar)
+        let allSlots = HourlySlotPlan.slots(through: endTime, now: Date(), calendar: calendar)
         let total = allSlots.count
         var processed = 0
         var skipped = 0
@@ -236,13 +276,19 @@ class ScheduleService: ObservableObject {
                 continue
             }
 
-            await MainActor.run {
-                let kindLabel = L10n.t(kind == .hourly ? "mode.hourly" : "mode.manual")
-                let range = "\(self.formatTime(slot.start))-\(self.formatTime(slot.end))"
-                self.statusMessage = L10n.t("status.slot_progress", kindLabel, idx + 1, total, range)
-            }
+            let kindLabel = L10n.t(kind == .hourly ? "mode.hourly" : "mode.manual")
+            let range = "\(formatTime(slot.start))-\(formatTime(slot.end))"
+            await onStatus(L10n.t("status.slot_progress", kindLabel, idx + 1, total, range))
 
-            let didWrite = try await executeSlot(start: slot.start, end: slot.end, kind: kind)
+            let didWrite = try await runSlot(
+                start: slot.start,
+                end: slot.end,
+                kind: kind,
+                collectionService: collectionService,
+                summarizationService: summarizationService,
+                settings: settings,
+                onStatus: onStatus
+            )
             if didWrite {
                 SummaryStateStore.markHourly(date: day, hour: slot.hour)
                 processed += 1
@@ -255,14 +301,21 @@ class ScheduleService: ObservableObject {
         return processed
     }
 
-    @discardableResult
-    private func executeSlot(start: Date, end: Date, kind: FileService.SectionKind) async throws -> Bool {
+    private static func runSlot(
+        start: Date,
+        end: Date,
+        kind: FileService.SectionKind,
+        collectionService: CollectionService,
+        summarizationService: SummarizationService,
+        settings: AppSettings,
+        onStatus: @escaping StatusReporter
+    ) async throws -> Bool {
         let period = DateInterval(start: start, end: end)
         let activities = collectionService.collectAllActivities(in: period)
         LogService.info("\(kind.rawValue) slot \(formatTime(start))-\(formatTime(end)): \(activities.count) records")
 
         guard !activities.isEmpty else {
-            await MainActor.run { self.statusMessage = L10n.t("status.no_activity") }
+            await onStatus(L10n.t("status.no_activity"))
             return false
         }
 
@@ -287,12 +340,7 @@ class ScheduleService: ObservableObject {
         return true
     }
 
-    private func reloadSettings() {
-        self.settings = AppSettings.load()
-        summarizationService.configure(with: settings.aiProvider)
-    }
-
-    private func formatTime(_ date: Date) -> String {
+    private static func formatTime(_ date: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
         return formatter.string(from: date)
