@@ -33,6 +33,9 @@ actor OpenAISummarizer: AISummarizer {
 
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
+        // 로컬 LLM(llama.cpp 등)은 추론 완료까지 1~수분 idle 가능.
+        // URLSession.shared 기본 60초로는 부족 → 5분으로 늘림.
+        request.timeoutInterval = 300
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         if !apiKey.isEmpty {
             request.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")

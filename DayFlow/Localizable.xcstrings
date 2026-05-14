@@ -329,6 +329,14 @@
         "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "完全磁盘访问" } }
       }
     },
+    "settings.permission.calendar" : {
+      "localizations" : {
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "캘린더 접근" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Calendar Access" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "カレンダーアクセス" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "日历访问" } }
+      }
+    },
     "settings.permission.open" : {
       "localizations" : {
         "ko" : { "stringUnit" : { "state" : "translated", "value" : "설정 열기" } },
@@ -457,6 +465,14 @@
         "en" : { "stringUnit" : { "state" : "translated", "value" : "%1$@ slot %2$d/%3$d (%4$@)..." } },
         "ja" : { "stringUnit" : { "state" : "translated", "value" : "%1$@ スロット %2$d/%3$d (%4$@) を生成中..." } },
         "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "%1$@ 时段 %2$d/%3$d (%4$@) 生成中..." } }
+      }
+    },
+    "status.no_pending_slots" : {
+      "localizations" : {
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "처리할 슬롯 없음" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "No pending slots" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "処理する時間枠なし" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "无待处理时段" } }
       }
     },
 

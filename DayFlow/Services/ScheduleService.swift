@@ -39,6 +39,9 @@ class ScheduleService: ObservableObject {
 
     /// 자동 스케줄 시작
     func start() {
+        // 기존 .md 파일에 이미 작성된 시간 슬롯을 state store에 반영 (1회성, idempotent).
+        SummaryStateStore.migrate(date: Date(), in: settings.outputDirectory)
+        SummaryStateStore.cleanup()
         scheduleHourly()
         statusMessage = L10n.t("status.idle")
     }
@@ -79,15 +82,13 @@ class ScheduleService: ObservableObject {
 
     private func scheduleHourly() {
         hourlyTimer?.invalidate()
-        // 매시간 59분 59초에 fire (시간 경계 직전).
-        // 정각보다 1초 일찍 도는 게 핵심:
-        //   - 23:59:59 fire → 그 날 마지막 슬롯(23:00-23:59:59)까지 빠짐없이 처리
-        //   - 자정 trigger 누락 위험 없음
+        // 매시간 0분 0초에 fire. 직전 시간 슬롯이 막 완료된 시점.
+        // 예: 15:00:00 fire → 슬롯 [14:00, 15:00) 처리 가능.
         let now = Date()
         let cal = Calendar.current
         var comps = cal.dateComponents([.year, .month, .day, .hour], from: now)
-        comps.minute = 59
-        comps.second = 59
+        comps.minute = 0
+        comps.second = 0
         guard var nextFire = cal.date(from: comps) else { return }
         if nextFire <= now {
             nextFire.addTimeInterval(3600)
@@ -102,22 +103,16 @@ class ScheduleService: ObservableObject {
         }
     }
 
-    /// 매시간 59분 59초에 호출됨.
-    /// 그 시점 endTime 기준으로 오늘 0시부터 비어있는 모든 시간 슬롯을 채운다.
-    /// 23:59:59 fire가 그 날 마지막 슬롯까지 처리하므로 별도의 자정 보충 로직 없음.
-    ///
-    /// **Sleep wake catch-up fire 방어**: timer가 sleep 동안 missed fire를 wake 직후
-    /// 임의 시각(예: 09:43)에 한 번 catch up. 그 시점 fire는 partial slot을 만들어
-    /// 중복 헤더(`[09:00 - 09:43]` + `[09:00 - 10:00]`)를 야기. 정시 boundary(minute >= 55)
-    /// fire만 정상으로 간주하고, 그 외는 skip — 다음 정상 fire가 빈 슬롯을 채워줌.
+    /// 매시간 0분 0초에 호출됨.
+    /// endTime을 현재 시간의 정각으로 내림 → 완료된 시간 슬롯만 처리.
+    ///   - 15:00:00.x fire → endTime=15:00:00 → 슬롯 0..14 검사
+    ///   - Sleep wake catch-up 09:43 fire → endTime=09:00:00 → 슬롯 0..8 검사
+    /// state store가 "이미 처리됨"으로 마킹된 슬롯은 자동으로 skip.
     private func runHourlyTrigger() async {
         let now = Date()
-        let minute = Calendar.current.component(.minute, from: now)
-        guard minute >= 55 else {
-            LogService.info("Hourly catch-up fire skipped (minute=\(minute))")
-            return
-        }
-        await performSummary(mode: .hourly)
+        let cal = Calendar.current
+        let endTime = cal.date(from: cal.dateComponents([.year, .month, .day, .hour], from: now)) ?? now
+        await performSummary(mode: .hourly, endTime: endTime)
     }
 
     // MARK: - Summary execution
@@ -158,9 +153,13 @@ class ScheduleService: ObservableObject {
         let task = Task { [weak self] in
             guard let self = self else { return }
             do {
-                try await self.executeSummary(mode: mode, endTime: endTime ?? Date())
+                let processed = try await self.executeSummary(mode: mode, endTime: endTime ?? Date())
                 await MainActor.run {
-                    self.statusMessage = L10n.t("status.completed", mode.label, self.formatTime(Date()))
+                    if processed == 0 {
+                        self.statusMessage = L10n.t("status.no_pending_slots")
+                    } else {
+                        self.statusMessage = L10n.t("status.completed", mode.label, self.formatTime(Date()))
+                    }
                     self.isSummarizing = false
                     self.currentTask = nil
                 }
@@ -182,46 +181,78 @@ class ScheduleService: ObservableObject {
         currentTask = task
     }
 
-    private func executeSummary(mode: PerformMode, endTime: Date = Date()) async throws {
+    /// 새로 작성된 슬롯 수 반환. 0이면 모두 skip 또는 슬롯 없음.
+    private func executeSummary(mode: PerformMode, endTime: Date = Date()) async throws -> Int {
         try await executeHourlySlots(through: endTime, kind: mode.sectionKind)
     }
 
-    /// 오늘 0시부터 `endTime`까지 1시간 단위로 슬롯을 만들어 각각 요약.
-    /// 이미 같은 시간 범위의 섹션이 파일에 있으면 스킵.
-    private func executeHourlySlots(through endTime: Date, kind: FileService.SectionKind) async throws {
-        let calendar = Calendar.current
+    /// 시간 슬롯 1건. start..end 범위, hour는 그 시간의 0~23 인덱스.
+    struct HourlySlot: Equatable {
+        let start: Date
+        let end: Date
+        let hour: Int
+    }
 
-        var allSlots: [(Date, Date)] = []
-        var cursor = calendar.startOfDay(for: endTime)
+    /// `endTime` 까지 1시간 단위로 슬롯 생성. **완료된 시간만** (`next <= now`) 포함.
+    /// partial 슬롯(현재 진행 중인 시간) 제외.
+    ///
+    /// 동작 예시:
+    /// - hourly fire at 15:00:00 (now=15:00:00.x) → endTime=15:00 → hours 0..14
+    /// - 수동 at 14:19 (now=14:19) → endTime=14:19 → hours 0..13 (hour 14는 `next=15:00 > now` 제외)
+    /// - 수동 at 00:30 (now=00:30) → hour 0의 `next=01:00 > 00:30` → 빈 배열
+    /// - 과거 날짜 endOfDay 23:59:59 (now=오늘) → hour 23의 `next=다음날 00:00 <= now` → 포함
+    static func generateSlots(through endTime: Date, now: Date, calendar: Calendar = .current) -> [HourlySlot] {
+        let day = calendar.startOfDay(for: endTime)
+        var slots: [HourlySlot] = []
+        var cursor = day
         while cursor < endTime {
             let next = calendar.date(byAdding: .hour, value: 1, to: cursor) ?? endTime
-            allSlots.append((cursor, min(next, endTime)))
+            let slotHour = calendar.component(.hour, from: cursor)
+            if next <= now {
+                slots.append(HourlySlot(start: cursor, end: min(next, endTime), hour: slotHour))
+            }
             cursor = next
         }
-        let total = allSlots.count
+        return slots
+    }
 
+    /// 오늘 0시부터 `endTime`까지 1시간 단위로 슬롯 생성.
+    /// **완료된 시간만** 처리 (`next <= now`). partial 슬롯(현재 진행 중인 시간) 제외.
+    /// state store에 이미 마킹된 슬롯은 skip. 성공 시 모드 무관하게 마킹.
+    /// - Returns: 새로 요약 작성된 슬롯 수 (skip은 카운트 안 함).
+    private func executeHourlySlots(through endTime: Date, kind: FileService.SectionKind) async throws -> Int {
+        let calendar = Calendar.current
+        let day = calendar.startOfDay(for: endTime)
+        let allSlots = Self.generateSlots(through: endTime, now: Date(), calendar: calendar)
+        let total = allSlots.count
         var processed = 0
         var skipped = 0
 
-        for (idx, (slotStart, slotEnd)) in allSlots.enumerated() {
+        for (idx, slot) in allSlots.enumerated() {
             try Task.checkCancellation()
 
-            if FileService.sectionExists(periodStart: slotStart, periodEnd: slotEnd, in: settings.outputDirectory) {
+            if SummaryStateStore.isHourlyDone(date: day, hour: slot.hour) {
                 skipped += 1
                 continue
             }
 
             await MainActor.run {
                 let kindLabel = L10n.t(kind == .hourly ? "mode.hourly" : "mode.manual")
-                let range = "\(self.formatTime(slotStart))-\(self.formatTime(slotEnd))"
+                let range = "\(self.formatTime(slot.start))-\(self.formatTime(slot.end))"
                 self.statusMessage = L10n.t("status.slot_progress", kindLabel, idx + 1, total, range)
             }
 
-            let didWrite = try await executeSlot(start: slotStart, end: slotEnd, kind: kind)
-            if didWrite { processed += 1 } else { skipped += 1 }
+            let didWrite = try await executeSlot(start: slot.start, end: slot.end, kind: kind)
+            if didWrite {
+                SummaryStateStore.markHourly(date: day, hour: slot.hour)
+                processed += 1
+            } else {
+                skipped += 1
+            }
         }
 
-        LogService.info("Hourly slots: \(processed) summarized, \(skipped) skipped (total \(total))")
+        LogService.info("\(kind.rawValue) slots: \(processed) summarized, \(skipped) skipped (total \(total))")
+        return processed
     }
 
     @discardableResult

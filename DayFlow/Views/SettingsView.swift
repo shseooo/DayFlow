@@ -1,4 +1,5 @@
 import SwiftUI
+import AppKit
 
 /// 설정 뷰 (별도 윈도우로 표시됨).
 /// 모든 필드는 변경 즉시 UserDefaults에 자동 저장된다.
@@ -16,14 +17,14 @@ struct SettingsView: View {
     @State private var launchAtLoginStatus: LaunchAtLoginService.Status = LaunchAtLoginService.currentStatus()
     @State private var launchAtLoginError: String?
 
-    @State private var showFolderPicker = false
-    @State private var showWatchDirPicker = false
-    @State private var showExcludeDirPicker = false
     @State private var savedFlash = false
 
     @State private var hasAccessibility: Bool = PermissionService.checkAccessibility()
     @State private var hasFullDisk: Bool = PermissionService.checkFullDiskAccess()
+    @State private var hasCalendar: Bool = PermissionService.checkCalendar()
     private let permissionRefreshTimer = Timer.publish(every: 2, on: .main, in: .common).autoconnect()
+
+    @FocusState private var modelFieldFocused: Bool
 
     init() {
         let loaded = AppSettings.load()
@@ -60,14 +61,22 @@ struct SettingsView: View {
                     }
                 }
 
-                if tempProviderType.requiresApiKey {
+                if tempProviderType.supportsApiKey {
                     SecureField("settings.api_key", text: $tempApiKey)
                         .onChange(of: tempApiKey) { _, _ in autosave() }
                 }
 
                 TextField("settings.model", text: $tempModel)
                     .textFieldStyle(.roundedBorder)
+                    .focused($modelFieldFocused)
                     .onChange(of: tempModel) { _, _ in autosave() }
+                    .onChange(of: modelFieldFocused) { _, focused in
+                        guard !focused else { return }
+                        let trimmed = tempModel.trimmingCharacters(in: .whitespacesAndNewlines)
+                        if trimmed != tempModel {
+                            tempModel = trimmed
+                        }
+                    }
             }
 
             Section {
@@ -106,7 +115,7 @@ struct SettingsView: View {
                         .textFieldStyle(.roundedBorder)
                         .onChange(of: tempOutputDir) { _, _ in autosave() }
                     Button("settings.browse") {
-                        showFolderPicker = true
+                        pickOutputDir()
                     }
                 }
             }
@@ -129,7 +138,7 @@ struct SettingsView: View {
                     }
                 }
                 Button("settings.add_dir") {
-                    showWatchDirPicker = true
+                    pickWatchedDirs()
                 }
             } header: {
                 Text("settings.watched_dirs")
@@ -157,7 +166,7 @@ struct SettingsView: View {
                     }
                 }
                 Button("settings.add_excluded_dir") {
-                    showExcludeDirPicker = true
+                    pickExcludedDirs()
                 }
             } header: {
                 Text("settings.excluded_dirs")
@@ -262,6 +271,16 @@ struct SettingsView: View {
                         PermissionService.requestFullDiskAccess()
                     }
                 }
+
+                HStack {
+                    Image(systemName: hasCalendar ? "checkmark.circle.fill" : "xmark.circle.fill")
+                        .foregroundColor(hasCalendar ? .green : .red)
+                    Text("settings.permission.calendar")
+                    Spacer()
+                    Button("settings.permission.open") {
+                        PermissionService.openCalendarSettings()
+                    }
+                }
             } header: {
                 Text("settings.permissions")
             } footer: {
@@ -286,24 +305,6 @@ struct SettingsView: View {
             .background(.bar)
         }
         .frame(width: 520, height: 820)
-        .fileImporter(
-            isPresented: $showFolderPicker,
-            allowedContentTypes: [.directory],
-            allowsMultipleSelection: false,
-            onCompletion: handleFolderSelection
-        )
-        .fileImporter(
-            isPresented: $showWatchDirPicker,
-            allowedContentTypes: [.directory],
-            allowsMultipleSelection: true,
-            onCompletion: handleWatchedDirSelection
-        )
-        .fileImporter(
-            isPresented: $showExcludeDirPicker,
-            allowedContentTypes: [.directory],
-            allowsMultipleSelection: true,
-            onCompletion: handleExcludedDirSelection
-        )
         .onAppear { refreshPermissions() }
         .onReceive(permissionRefreshTimer) { _ in refreshPermissions() }
         .onReceive(NotificationCenter.default.publisher(for: NSApplication.didBecomeActiveNotification)) { _ in
@@ -340,36 +341,65 @@ struct SettingsView: View {
         }
     }
 
-    // MARK: - Watched directories
+    // MARK: - Directory pickers
+    //
+    // LSUIElement YES인 accessory app에서 SwiftUI `.fileImporter`는 sheet가 안 뜨는
+    // 케이스가 있어 NSOpenPanel을 직접 사용. runModal() 호출 전에 NSApp.activate로
+    // 앱을 foreground로 끌어와 panel이 안정적으로 표시되게 함.
 
-    private func removeWatchedDir(_ dir: String) {
-        tempWatchedDirs.removeAll { $0 == dir }
-        autosave()
+    private func pickOutputDir() {
+        NSApp.activate(ignoringOtherApps: true)
+        let panel = NSOpenPanel()
+        panel.canChooseDirectories = true
+        panel.canChooseFiles = false
+        panel.allowsMultipleSelection = false
+        if !tempOutputDir.isEmpty {
+            panel.directoryURL = URL(fileURLWithPath: tempOutputDir)
+        }
+        if panel.runModal() == .OK, let url = panel.url {
+            tempOutputDir = url.path
+            autosave()
+        }
     }
 
-    private func handleWatchedDirSelection(result: Result<[URL], Error>) {
-        if let urls = try? result.get() {
-            for url in urls where !tempWatchedDirs.contains(url.path) {
+    private func pickWatchedDirs() {
+        NSApp.activate(ignoringOtherApps: true)
+        let panel = NSOpenPanel()
+        panel.canChooseDirectories = true
+        panel.canChooseFiles = false
+        panel.allowsMultipleSelection = true
+        if panel.runModal() == .OK {
+            for url in panel.urls where !tempWatchedDirs.contains(url.path) {
                 tempWatchedDirs.append(url.path)
             }
             autosave()
         }
     }
 
-    // MARK: - Excluded directories
-
-    private func removeExcludedDir(_ dir: String) {
-        tempExcludedDirs.removeAll { $0 == dir }
-        autosave()
-    }
-
-    private func handleExcludedDirSelection(result: Result<[URL], Error>) {
-        if let urls = try? result.get() {
-            for url in urls where !tempExcludedDirs.contains(url.path) {
+    private func pickExcludedDirs() {
+        NSApp.activate(ignoringOtherApps: true)
+        let panel = NSOpenPanel()
+        panel.canChooseDirectories = true
+        panel.canChooseFiles = false
+        panel.allowsMultipleSelection = true
+        if panel.runModal() == .OK {
+            for url in panel.urls where !tempExcludedDirs.contains(url.path) {
                 tempExcludedDirs.append(url.path)
             }
             autosave()
         }
+    }
+
+    // MARK: - Watched / Excluded list manipulation
+
+    private func removeWatchedDir(_ dir: String) {
+        tempWatchedDirs.removeAll { $0 == dir }
+        autosave()
+    }
+
+    private func removeExcludedDir(_ dir: String) {
+        tempExcludedDirs.removeAll { $0 == dir }
+        autosave()
     }
 
     // MARK: - zsh snippet
@@ -430,17 +460,12 @@ struct SettingsView: View {
 
     // MARK: - Misc
 
-    private func handleFolderSelection(result: Result<[URL], Error>) {
-        if let urls = try? result.get(), let url = urls.first {
-            tempOutputDir = url.path
-            autosave()
-        }
-    }
-
     private func refreshPermissions() {
         let acc = PermissionService.checkAccessibility()
         let fda = PermissionService.checkFullDiskAccess()
+        let cal = PermissionService.checkCalendar()
         if acc != hasAccessibility { hasAccessibility = acc }
         if fda != hasFullDisk { hasFullDisk = fda }
+        if cal != hasCalendar { hasCalendar = cal }
     }
 }
