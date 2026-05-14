@@ -44,17 +44,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             button.action = #selector(toggleMenu)
         }
 
-        // 권한 안내 alert: 최초 1회만 표시.
-        // 사유: ad-hoc 서명 + install.sh의 tccutil reset 조합으로 매 빌드마다 권한이
-        // 리셋되어 결과적으로 매 실행마다 alert가 뜨는 문제. 권한 부여는 설정창의
-        // 권한 섹션에서 언제든 가능하므로 자동 alert는 1회로 제한.
-        let permAlertShownKey = "DayFlowPermissionAlertShown"
-        if !UserDefaults.standard.bool(forKey: permAlertShownKey) {
-            let permissions = PermissionService.checkAllPermissions()
-            if !permissions.accessibility || !permissions.fullDisk {
-                showPermissionAlert()
-            }
-            UserDefaults.standard.set(true, forKey: permAlertShownKey)
+        // 권한 부족 시 안내 alert. 권한이 모두 있으면 안 띄움.
+        // (1회만 표시하던 이전 동작은 권한이 사라진 빌드에서 alert가 안 떠 사용자가
+        //  앱 동작 실패를 디버그하기 어려웠음. 권한 부재는 핵심 기능 차단이므로 매번 안내.)
+        let permissions = PermissionService.checkAllPermissions()
+        if !permissions.accessibility || !permissions.fullDisk {
+            showPermissionAlert()
         }
 
         // 30일 이전 활동 로그 디렉토리 자동 정리

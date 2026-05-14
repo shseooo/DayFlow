@@ -26,6 +26,16 @@ struct SettingsView: View {
 
     @FocusState private var modelFieldFocused: Bool
 
+    /// Provider를 전환할 때 직전 입력값을 보존하기 위한 세션-수명 캐시.
+    /// 사용자가 LocalLLM↔OpenAI 등으로 토글하며 비교/실험할 때 매번 다시 입력하지 않도록.
+    @State private var providerCache: [AIProviderType: ProviderInputs] = [:]
+
+    private struct ProviderInputs {
+        var endpoint: String
+        var apiKey: String
+        var model: String
+    }
+
     init() {
         let loaded = AppSettings.load()
         self._tempProviderType = State(initialValue: loaded.aiProvider.type)
@@ -41,6 +51,45 @@ struct SettingsView: View {
     }
 
     var body: some View {
+        TabView {
+            aiTab
+                .tabItem { Label("settings.tab.ai", systemImage: "brain") }
+
+            storageTab
+                .tabItem { Label("settings.tab.storage", systemImage: "folder") }
+
+            generalTab
+                .tabItem { Label("settings.tab.general", systemImage: "gearshape") }
+
+            permissionsTab
+                .tabItem { Label("settings.tab.permissions", systemImage: "lock.shield") }
+        }
+        .safeAreaInset(edge: .bottom, spacing: 0) {
+            HStack(spacing: 6) {
+                Image(systemName: savedFlash ? "checkmark.circle.fill" : "checkmark.circle")
+                    .foregroundColor(savedFlash ? .green : .secondary)
+                    .animation(.easeInOut(duration: 0.2), value: savedFlash)
+                Text("settings.autosaved")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                Spacer()
+            }
+            .padding(.horizontal, 20)
+            .padding(.vertical, 8)
+            .background(.bar)
+        }
+        .frame(width: 560, height: 690)
+        .onAppear { refreshPermissions() }
+        .onReceive(permissionRefreshTimer) { _ in refreshPermissions() }
+        .onReceive(NotificationCenter.default.publisher(for: NSApplication.didBecomeActiveNotification)) { _ in
+            refreshPermissions()
+        }
+        .environment(\.locale, tempUILanguage.locale ?? .current)
+    }
+
+    // MARK: - Tabs
+
+    private var aiTab: some View {
         Form {
             Section("settings.ai") {
                 Picker("settings.provider", selection: $tempProviderType) {
@@ -48,8 +97,8 @@ struct SettingsView: View {
                         Text(provider.displayName).tag(provider)
                     }
                 }
-                .onChange(of: tempProviderType) { _, newProvider in
-                    applyProviderDefaults(newProvider)
+                .onChange(of: tempProviderType) { oldProvider, newProvider in
+                    switchProvider(from: oldProvider, to: newProvider)
                     autosave()
                 }
 
@@ -80,21 +129,6 @@ struct SettingsView: View {
             }
 
             Section {
-                Picker("settings.ui_language", selection: $tempUILanguage) {
-                    ForEach(UILanguage.allCases) { lang in
-                        Text(lang.displayName).tag(lang)
-                    }
-                }
-                .onChange(of: tempUILanguage) { _, _ in autosave() }
-            } header: {
-                Text("settings.ui_language")
-            } footer: {
-                Text("settings.ui_language_footer")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-            }
-
-            Section {
                 Picker("settings.summary_language_picker", selection: $tempSummaryLanguage) {
                     ForEach(SummaryLanguage.allCases) { lang in
                         Text(lang.displayName).tag(lang)
@@ -108,7 +142,12 @@ struct SettingsView: View {
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
+        }
+        .formStyle(.grouped)
+    }
 
+    private var storageTab: some View {
+        Form {
             Section("settings.output_path") {
                 HStack {
                     TextField("settings.output_path", text: $tempOutputDir)
@@ -209,6 +248,26 @@ struct SettingsView: View {
             } header: {
                 Text("settings.zsh_realtime")
             }
+        }
+        .formStyle(.grouped)
+    }
+
+    private var generalTab: some View {
+        Form {
+            Section {
+                Picker("settings.ui_language", selection: $tempUILanguage) {
+                    ForEach(UILanguage.allCases) { lang in
+                        Text(lang.displayName).tag(lang)
+                    }
+                }
+                .onChange(of: tempUILanguage) { _, _ in autosave() }
+            } header: {
+                Text("settings.ui_language")
+            } footer: {
+                Text("settings.ui_language_footer")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
 
             Section {
                 Toggle("settings.launch_at_login", isOn: $tempLaunchAtLogin)
@@ -250,7 +309,12 @@ struct SettingsView: View {
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
+        }
+        .formStyle(.grouped)
+    }
 
+    private var permissionsTab: some View {
+        Form {
             Section {
                 HStack {
                     Image(systemName: hasAccessibility ? "checkmark.circle.fill" : "xmark.circle.fill")
@@ -290,27 +354,6 @@ struct SettingsView: View {
             }
         }
         .formStyle(.grouped)
-        .safeAreaInset(edge: .bottom, spacing: 0) {
-            HStack(spacing: 6) {
-                Image(systemName: savedFlash ? "checkmark.circle.fill" : "checkmark.circle")
-                    .foregroundColor(savedFlash ? .green : .secondary)
-                    .animation(.easeInOut(duration: 0.2), value: savedFlash)
-                Text("settings.autosaved")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                Spacer()
-            }
-            .padding(.horizontal, 20)
-            .padding(.vertical, 8)
-            .background(.bar)
-        }
-        .frame(width: 520, height: 820)
-        .onAppear { refreshPermissions() }
-        .onReceive(permissionRefreshTimer) { _ in refreshPermissions() }
-        .onReceive(NotificationCenter.default.publisher(for: NSApplication.didBecomeActiveNotification)) { _ in
-            refreshPermissions()
-        }
-        .environment(\.locale, tempUILanguage.locale ?? .current)
     }
 
     // MARK: - Autosave
@@ -416,14 +459,27 @@ struct SettingsView: View {
         pasteboard.setString(Self.zshSnippet, forType: .string)
     }
 
-    // MARK: - Provider defaults
+    // MARK: - Provider switch
 
-    private func applyProviderDefaults(_ provider: AIProviderType) {
-        tempModel = provider.defaultModel
-        if provider.requiresEndpoint {
-            tempEndpoint = provider.defaultEndpoint
+    /// Provider 전환: 직전 provider의 입력을 캐시에 저장하고, 새 provider에
+    /// 이전 입력이 있으면 복원, 없으면 default 사용.
+    private func switchProvider(from old: AIProviderType, to new: AIProviderType) {
+        guard old != new else { return }
+
+        providerCache[old] = ProviderInputs(
+            endpoint: tempEndpoint,
+            apiKey: tempApiKey,
+            model: tempModel
+        )
+
+        if let cached = providerCache[new] {
+            tempEndpoint = cached.endpoint
+            tempApiKey = cached.apiKey
+            tempModel = cached.model
         } else {
-            tempEndpoint = ""
+            tempModel = new.defaultModel
+            tempEndpoint = new.requiresEndpoint ? new.defaultEndpoint : ""
+            tempApiKey = ""
         }
     }
 

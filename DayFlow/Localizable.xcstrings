@@ -97,6 +97,38 @@
         "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "AI 设置" } }
       }
     },
+    "settings.tab.ai" : {
+      "localizations" : {
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "AI" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "AI" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "AI" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "AI" } }
+      }
+    },
+    "settings.tab.storage" : {
+      "localizations" : {
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "저장소" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Storage" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "ストレージ" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "存储" } }
+      }
+    },
+    "settings.tab.general" : {
+      "localizations" : {
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "일반" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "General" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "一般" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "通用" } }
+      }
+    },
+    "settings.tab.permissions" : {
+      "localizations" : {
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "권한" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Permissions" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "権限" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "权限" } }
+      }
+    },
     "settings.provider" : {
       "localizations" : {
         "ko" : { "stringUnit" : { "state" : "translated", "value" : "제공자" } },
