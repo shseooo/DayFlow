@@ -74,60 +74,24 @@ cd DayFlow
 > 두 번째 빌드부터는 캐시되어 즉시 skip. 다운로드 진행 로그는 install.sh 의 grep 필터에
 > 가려져서 보이지 않지만 정상 동작 중. `.app` 크기는 약 5GB.
 
-## Xcode 프로젝트 초기 설정 (clone 후 1회만)
+## Xcode 에서 직접 빌드
 
-`.xcodeproj` 파일을 통해 자동 설정되지 않는 항목들 — fresh clone 이후 한 번만 수행:
+`install.sh` 없이 Xcode 로 열어서 빌드해도 추가 설정은 필요 없음. 아래 항목은 모두 `DayFlow.xcodeproj` 에 포함되어 커밋되어 있음:
 
-### 1. Swift Package 의존성 (내장 MLX 모델용)
+- SPM 의존성 4개 (`mlx-swift`, `mlx-swift-lm`, `swift-huggingface`, `swift-transformers`) + 버전 잠금(`Package.resolved`)
+- MLX 모델 다운로드 Run Script Phase (`Scripts/download_mlx_model.sh`)
+- `MLXModels/` 폴더 참조 (Xcode 16 Synchronized Folder)
+- `ENABLE_USER_SCRIPT_SANDBOXING = NO` (모델 다운로드 스크립트의 네트워크 호출 허용)
 
-Xcode → 프로젝트 네비게이터 최상단 **DayFlow** 선택 → **Package Dependencies** 탭 → `+`
-
-| URL                                                | Rule                          | Products                                       |
-| -------------------------------------------------- | ----------------------------- | ---------------------------------------------- |
-| `https://github.com/ml-explore/mlx-swift`          | Up to Next Major: `0.31.3`    | `MLX` (메모리 해제용 `Memory.clearCache()` 호출) |
-| `https://github.com/ml-explore/mlx-swift-lm`       | Up to Next Major: `3.31.3`    | `MLXLMCommon`, `MLXVLM`, `MLXHuggingFace`      |
-| `https://github.com/huggingface/swift-huggingface` | Up to Next Major: `0.9.0`     | `HuggingFace`                                  |
-| `https://github.com/huggingface/swift-transformers`| Up to Next Major: `1.3.2`     | `Tokenizers`                                   |
-
-Target = **DayFlow** 체크.
-
-> `mlx-swift` 는 `mlx-swift-lm` 의 transitive 의존성이라 그것만 추가하면 타겟 `+` 피커에 `MLX` 가 보이지 않음. 위 표대로 `mlx-swift` 를 **프로젝트 레벨에 직접** 추가해야 `MLX` 모듈이 import 가능.
-
-### 2. `MLXSummarizer.swift` 등록
-
-Finder 에서 `DayFlow/AI/MLXSummarizer.swift` 를 Xcode 의 **`AI`** 그룹으로 drag & drop:
-
-- ☐ Copy items if needed (이미 위치함)
-- ☑ Add to targets: DayFlow
-
-### 3. Run Script 빌드 페이즈 추가
-
-Xcode → **DayFlow** target → **Build Phases** → `+` → **New Run Script Phase**
-
-새 페이즈를 **Compile Sources 위로** 드래그. 이름 `Download MLX Model`. Shell: `/bin/bash`.
-
-Script:
 ```bash
-"${SRCROOT}/Scripts/download_mlx_model.sh"
+git clone <repo-url>
+cd DayFlow
+open DayFlow.xcodeproj
 ```
 
-설정:
-- **Based on dependency analysis**: 체크 해제 (스크립트가 자체 idempotent 체크)
-- Output Files 칸은 비워둠
+Xcode 가 첫 빌드 시 SPM 패키지 fetch → MLX 모델 가중치 다운로드(~3.6GB, 5–10분) → 컴파일을 순서대로 자동 수행.
 
-### 4. 모델 디렉토리를 Folder Reference 로 추가
-
-`DayFlow` 그룹 우클릭 → **Add Files to "DayFlow"…** → `DayFlow/MLXModels` 폴더 선택
-→ **Create folder references** (파란 폴더 — Groups 가 아님!), Target = DayFlow.
-
-### 5. User Script Sandboxing 비활성화 (Xcode 15+)
-
-Xcode → DayFlow target → **Build Settings** → 검색 `script sandbox` →
-**User Script Sandboxing** = `No`.
-
-(외부 도구 호출 + 파일 다운로드 스크립트가 sandbox 안에서 동작하지 않음 — 표준 해결책)
-
-세부 설명은 `Scripts/XCODE_SETUP_MLX.md` 참고.
+> fresh project 에서 같은 구성을 처음 세팅하는 절차는 `Scripts/XCODE_SETUP_MLX.md` 참고. clone 후 빌드에는 불필요.
 
 ## AI 제공자 설정
 
