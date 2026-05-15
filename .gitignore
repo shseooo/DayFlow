@@ -11,3 +11,5 @@ MLXModels/*/*.safetensors
 MLXModels/*/*.safetensors.part
 MLXModels/*/*.json
 MLXModels/*/*.jinja
+
+*.code-workspace
