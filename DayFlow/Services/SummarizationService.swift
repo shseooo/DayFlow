@@ -18,6 +18,8 @@ class SummarizationService {
 
     func configure(with config: AIProviderConfig) {
         switch config.type {
+        case .builtin:
+            self.summarizer = MLXSummarizer()
         case .localLLM, .openAI:
             self.summarizer = OpenAISummarizer(
                 endpoint: config.endpoint,
@@ -30,6 +32,12 @@ class SummarizationService {
                 model: config.model
             )
         }
+    }
+
+    /// 배치 요약이 끝난 뒤 호출. in-process 모델 가중치 등 무거운 리소스를 해제한다.
+    /// HTTP 기반 요약기에는 no-op.
+    func releaseResources() async {
+        await summarizer?.releaseResources()
     }
 
     func summarize(

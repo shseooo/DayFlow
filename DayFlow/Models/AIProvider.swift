@@ -1,7 +1,10 @@
 import Foundation
 
 /// AI 제공자 타입
+///
+/// `.builtin` 은 앱에 번들된 MLX 모델(Apple Silicon 전용). 다른 케이스는 네트워크 호출.
 enum AIProviderType: String, Codable, CaseIterable, Identifiable {
+    case builtin = "Builtin"
     case localLLM = "LocalLLM"
     case openAI = "OpenAI"
     case anthropic = "Anthropic"
@@ -10,6 +13,7 @@ enum AIProviderType: String, Codable, CaseIterable, Identifiable {
 
     var displayName: String {
         switch self {
+        case .builtin: return "내장 모델 (Gemma 4 e2b, MLX)"
         case .localLLM: return "LocalLLM (OpenAI 호환 서버)"
         case .openAI: return "OpenAI"
         case .anthropic: return "Anthropic"
@@ -18,6 +22,7 @@ enum AIProviderType: String, Codable, CaseIterable, Identifiable {
 
     var defaultEndpoint: String {
         switch self {
+        case .builtin: return ""
         case .localLLM: return "http://127.0.0.1:8000/v1"
         case .openAI: return "https://api.openai.com/v1"
         case .anthropic: return "https://api.anthropic.com"
@@ -26,23 +31,38 @@ enum AIProviderType: String, Codable, CaseIterable, Identifiable {
 
     var defaultModel: String {
         switch self {
+        case .builtin: return "mlx-community/gemma-4-e2b-it-4bit"
         case .localLLM: return "Qwen3.6"
         case .openAI: return "gpt-4o-mini"
         case .anthropic: return "claude-sonnet-4-20250514"
         }
     }
 
+    /// 엔드포인트 입력 UI 노출 여부.
+    /// - builtin: 로컬 추론이라 엔드포인트 개념 없음
     var requiresEndpoint: Bool {
         switch self {
+        case .builtin: return false
         case .localLLM, .openAI, .anthropic: return true
         }
     }
 
     /// API 키 입력 UI를 표시할지 여부.
+    /// - builtin: 로컬 추론이라 키 필요 없음
     /// - LocalLLM: 선택사항 (Auth 헤더가 필요한 OpenAI-호환 게이트웨이/프록시 등 대비)
     /// - OpenAI / Anthropic: 필수
     var supportsApiKey: Bool {
         switch self {
+        case .builtin: return false
+        case .localLLM, .openAI, .anthropic: return true
+        }
+    }
+
+    /// 모델 ID 를 사용자가 편집할 수 있는지.
+    /// - builtin: 빌드 시 번들된 모델로 고정 (read-only)
+    var supportsCustomModel: Bool {
+        switch self {
+        case .builtin: return false
         case .localLLM, .openAI, .anthropic: return true
         }
     }

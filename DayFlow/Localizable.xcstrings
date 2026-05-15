@@ -1,570 +1,1978 @@
 {
   "sourceLanguage" : "ko",
-  "version" : "1.0",
   "strings" : {
-    "menu.summarize_now" : {
-      "extractionState" : "manual",
+    "" : {
+
+    },
+    "alert.cancel" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "지금 요약" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Summarize Now" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "今すぐ要約" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "立即摘要" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "キャンセル"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "취소"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取消"
+          }
+        }
+      }
+    },
+    "alert.open_settings" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open Settings"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "設定を開く"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "설정 열기"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "打开设置"
+          }
+        }
+      }
+    },
+    "alert.permissions_message" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DayFlow needs Full Disk Access and Accessibility permissions to work."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DayFlow が動作するにはフルディスクアクセスとアクセシビリティの権限が必要です。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DayFlow가 작동하려면 전체 디스크 접근 권한과 접근성 권한이 필요합니다."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DayFlow 需要完全磁盘访问和辅助功能权限才能正常工作。"
+          }
+        }
+      }
+    },
+    "alert.permissions_title" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Permissions required"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "権限が必要です"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "권한이 필요합니다"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "需要授予权限"
+          }
+        }
+      }
+    },
+    "date_summary.generate" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Generate Summary"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "要約を生成"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "요약 생성"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "生成摘要"
+          }
+        }
+      }
+    },
+    "date_summary.no_logs" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No activity logs for the selected date."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選択した日付のアクティビティログがありません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "해당 날짜의 활동 로그가 없습니다."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "所选日期没有活动日志。"
+          }
+        }
+      }
+    },
+    "date_summary.pick_date" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pick a date to summarize"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "要約する日付を選択"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "요약할 날짜 선택"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "选择要摘要的日期"
+          }
+        }
+      }
+    },
+    "launch.status.enabled" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enabled"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "有効"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "활성"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已启用"
+          }
+        }
+      }
+    },
+    "launch.status.not_found" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Blocked"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ブロック済み"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "차단됨"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已阻止"
+          }
+        }
+      }
+    },
+    "launch.status.not_registered" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not Registered"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未登録"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "등록 안 됨"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未注册"
+          }
+        }
+      }
+    },
+    "launch.status.requires_approval" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Requires Approval"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "承認待ち"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "승인 대기"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "等待批准"
+          }
+        }
       }
     },
     "menu.cancel_summary" : {
       "extractionState" : "manual",
       "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "요약 취소" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Cancel Summary" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "要約をキャンセル" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "取消摘要" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel Summary"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "要約をキャンセル"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "요약 취소"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取消摘要"
+          }
+        }
       }
     },
     "menu.open_today_worklog" : {
       "extractionState" : "manual",
       "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "오늘 워크로그 열기" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Open Today's Worklog" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "今日のワークログを開く" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "打开今天的工作日志" } }
-      }
-    },
-    "menu.settings" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "설정" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Settings" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "設定" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "设置" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open Today's Worklog"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今日のワークログを開く"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "오늘 워크로그 열기"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "打开今天的工作日志"
+          }
+        }
       }
     },
     "menu.quit" : {
       "extractionState" : "manual",
       "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "종료" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Quit" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "終了" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "退出" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quit"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "終了"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "종료"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "退出"
+          }
+        }
+      }
+    },
+    "menu.settings" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settings"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "設定"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "설정"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "设置"
+          }
+        }
       }
     },
     "menu.summarize_by_date" : {
       "extractionState" : "manual",
       "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "날짜 지정 요약..." } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Summarize by Date..." } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "日付指定で要約..." } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "按日期摘要..." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Summarize by Date..."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "日付指定で要約..."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "날짜 지정 요약..."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "按日期摘要..."
+          }
+        }
       }
     },
-    "window.date_summary_title" : {
+    "menu.summarize_now" : {
+      "extractionState" : "manual",
       "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "날짜 지정 요약" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Summarize by Date" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "日付指定で要約" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "按日期摘要" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Summarize Now"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今すぐ要約"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "지금 요약"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "立即摘要"
+          }
+        }
       }
     },
-    "date_summary.pick_date" : {
+    "mode.hourly" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "요약할 날짜 선택" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Pick a date to summarize" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "要約する日付を選択" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "选择要摘要的日期" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hourly summary"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "毎時要約"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "매시간 요약"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "每小时摘要"
+          }
+        }
       }
     },
-    "date_summary.generate" : {
+    "mode.manual" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "요약 생성" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Generate Summary" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "要約を生成" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "生成摘要" } }
-      }
-    },
-    "date_summary.no_logs" : {
-      "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "해당 날짜의 활동 로그가 없습니다." } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "No activity logs for the selected date." } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "選択した日付のアクティビティログがありません。" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "所选日期没有活动日志。" } }
-      }
-    },
-
-    "settings.ai" : {
-      "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "AI 설정" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "AI Settings" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "AI 設定" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "AI 设置" } }
-      }
-    },
-    "settings.tab.ai" : {
-      "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "AI" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "AI" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "AI" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "AI" } }
-      }
-    },
-    "settings.tab.storage" : {
-      "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "저장소" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Storage" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "ストレージ" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "存储" } }
-      }
-    },
-    "settings.tab.general" : {
-      "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "일반" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "General" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "一般" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "通用" } }
-      }
-    },
-    "settings.tab.permissions" : {
-      "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "권한" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Permissions" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "権限" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "权限" } }
-      }
-    },
-    "settings.provider" : {
-      "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "제공자" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Provider" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "プロバイダ" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "提供商" } }
-      }
-    },
-    "settings.endpoint" : {
-      "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "API 엔드포인트" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "API Endpoint" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "API エンドポイント" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "API 终结点" } }
-      }
-    },
-    "settings.api_key" : {
-      "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "API 키" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "API Key" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "API キー" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "API 密钥" } }
-      }
-    },
-    "settings.model" : {
-      "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "모델" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Model" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "モデル" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "模型" } }
-      }
-    },
-    "settings.ui_language" : {
-      "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "UI 언어" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "UI Language" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "UI 言語" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "界面语言" } }
-      }
-    },
-    "settings.ui_language_footer" : {
-      "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "메뉴바와 설정창의 표시 언어. \"System Default\"는 macOS 언어 설정을 따릅니다." } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Language for the menu bar and settings window. \"System Default\" follows the macOS language." } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "メニューバーと設定画面の表示言語。\"System Default\" は macOS の言語設定に従います。" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "菜单栏和设置窗口的显示语言。\"System Default\" 跟随 macOS 系统语言。" } }
-      }
-    },
-    "settings.summary_language" : {
-      "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "AI 요약 언어" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "AI Summary Language" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "AI 要約言語" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "AI 摘要语言" } }
-      }
-    },
-    "settings.summary_language_picker" : {
-      "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "요약 출력 언어" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Summary Output Language" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "要約出力言語" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "摘要输出语言" } }
-      }
-    },
-    "settings.summary_language_footer" : {
-      "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "AI가 생성하는 요약문의 언어. UI 언어와 독립." } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Language of AI-generated summaries. Independent of UI language." } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "AI が生成する要約の言語。UI 言語とは独立。" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "AI 生成摘要的语言,与界面语言独立。" } }
-      }
-    },
-    "settings.output_path" : {
-      "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "출력 경로" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Output Path" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "出力パス" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "输出路径" } }
-      }
-    },
-    "settings.browse" : {
-      "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "찾기" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Browse" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "参照" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "浏览" } }
-      }
-    },
-    "settings.watched_dirs" : {
-      "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "파일 변경 감시 디렉토리" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Watched Directories" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "監視ディレクトリ" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "监视目录" } }
-      }
-    },
-    "settings.watched_dirs_footer" : {
-      "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "지정된 디렉토리의 파일 생성/수정/이동/삭제를 실시간으로 기록합니다." } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Records file create/modify/rename/delete events in the listed directories in real time." } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "指定ディレクトリのファイル作成/変更/移動/削除をリアルタイムで記録します。" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "实时记录所列目录的文件创建/修改/重命名/删除事件。" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Manual summary"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "手動要約"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "수동 요약"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "手动摘要"
+          }
+        }
       }
     },
     "settings.add_dir" : {
       "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "디렉토리 추가" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Add Directory" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "ディレクトリを追加" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "添加目录" } }
-      }
-    },
-    "settings.excluded_dirs" : {
-      "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "변경 감시 제외 디렉토리" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Excluded Directories" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "監視除外ディレクトリ" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "排除目录" } }
-      }
-    },
-    "settings.excluded_dirs_footer" : {
-      "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "경로의 일부가 이 목록에 매칭되면 변경 이벤트를 기록하지 않습니다. 예: minio 데이터 폴더, 임시 작업 폴더 등." } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Skips change events for paths whose substring matches any item here. e.g. minio data folder, temp build folder." } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "パスの一部がここに一致する場合、変更イベントを記録しません。例: minio データフォルダ、一時作業フォルダ。" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "如果路径包含此列表中的任一项,则跳过对应的变更事件。例如 minio 数据文件夹、临时工作目录。" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add Directory"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ディレクトリを追加"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "디렉토리 추가"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "添加目录"
+          }
+        }
       }
     },
     "settings.add_excluded_dir" : {
       "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "제외 디렉토리 추가" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Add Excluded Directory" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "除外ディレクトリを追加" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "添加排除目录" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add Excluded Directory"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "除外ディレクトリを追加"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "제외 디렉토리 추가"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "添加排除目录"
+          }
+        }
       }
     },
-    "settings.zsh_realtime" : {
+    "settings.ai" : {
       "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "터미널 실시간 수집 (zsh)" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Terminal Real-time Collection (zsh)" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "ターミナル リアルタイム収集 (zsh)" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "终端实时收集 (zsh)" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AI Settings"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AI 設定"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AI 설정"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AI 设置"
+          }
+        }
       }
     },
-    "settings.zsh_explanation" : {
+    "settings.api_key" : {
       "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "zsh는 기본적으로 셸 종료 시점에만 history 파일에 기록합니다. 명령 실행 직후 실시간으로 수집하려면 ~/.zshrc 끝에 아래 옵션을 추가하세요." } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "zsh writes to its history file only when the shell exits by default. To capture commands in real time, add the following options to the end of ~/.zshrc." } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "zsh はデフォルトでシェル終了時のみ履歴ファイルへ書き込みます。実行直後にリアルタイムで収集するには、~/.zshrc の末尾に以下を追加してください。" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "zsh 默认仅在 shell 退出时写入历史文件。要在命令执行后立即捕获,请在 ~/.zshrc 末尾添加以下选项。" } }
-      }
-    },
-    "settings.zsh_apply_hint" : {
-      "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "적용 후 새 터미널을 열거나 `source ~/.zshrc`를 실행하세요." } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Open a new terminal or run `source ~/.zshrc` to apply." } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "適用するには新しいターミナルを開くか、`source ~/.zshrc` を実行してください。" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "应用方式: 打开新终端或运行 `source ~/.zshrc`。" } }
-      }
-    },
-    "settings.launch_at_login" : {
-      "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "로그인 시 자동 실행" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Launch at Login" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "ログイン時に自動起動" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "登录时自动启动" } }
-      }
-    },
-    "settings.autostart_section" : {
-      "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "자동 시작" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Auto-Start" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "自動起動" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "自动启动" } }
-      }
-    },
-    "settings.autostart_footer" : {
-      "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "macOS 로그인 시 DayFlow를 자동으로 실행합니다. 첫 등록 후 시스템 설정 → 일반 → 로그인 항목에서 승인이 필요할 수 있습니다." } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Launches DayFlow automatically at macOS login. After first registration, approval may be required in System Settings → General → Login Items." } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "macOS ログイン時に DayFlow を自動起動します。初回登録後、システム設定 → 一般 → ログイン項目で承認が必要な場合があります。" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "在 macOS 登录时自动启动 DayFlow。首次注册后,可能需要在系统设置 → 通用 → 登录项中批准。" } }
-      }
-    },
-    "settings.current_status" : {
-      "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "현재 상태: %@" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Current status: %@" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "現在のステータス: %@" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "当前状态: %@" } }
-      }
-    },
-    "settings.open_system_settings" : {
-      "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "시스템 설정 열기" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Open System Settings" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "システム設定を開く" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "打开系统设置" } }
-      }
-    },
-    "settings.unstable_location_warning" : {
-      "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "⚠ 현재 앱이 Xcode DerivedData 또는 임시 폴더에서 실행 중입니다. /Applications로 옮긴 후 등록해야 부팅 시 정상 실행됩니다." } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "⚠ The app is running from Xcode DerivedData or a temporary folder. Move it to /Applications before registering for login startup." } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "⚠ アプリは Xcode DerivedData または一時フォルダから実行中です。起動時の自動実行を有効にする前に /Applications へ移動してください。" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "⚠ 应用正在从 Xcode DerivedData 或临时文件夹运行。请先移动到 /Applications 再注册开机自启动。" } }
-      }
-    },
-    "settings.permissions" : {
-      "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "권한 상태" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Permissions" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "権限" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "权限" } }
-      }
-    },
-    "settings.permission.accessibility" : {
-      "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "접근성 권한" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Accessibility" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "アクセシビリティ" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "辅助功能" } }
-      }
-    },
-    "settings.permission.full_disk" : {
-      "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "전체 디스크 접근" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Full Disk Access" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "フルディスクアクセス" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "完全磁盘访问" } }
-      }
-    },
-    "settings.permission.calendar" : {
-      "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "캘린더 접근" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Calendar Access" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "カレンダーアクセス" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "日历访问" } }
-      }
-    },
-    "settings.permission.open" : {
-      "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "설정 열기" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Open Settings" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "設定を開く" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "打开设置" } }
-      }
-    },
-    "settings.permission_footer" : {
-      "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "권한 변경 후 잠시 기다리거나 앱을 재시작하면 자동으로 반영됩니다." } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Permission changes apply after a short wait or app restart." } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "権限の変更は少し待つかアプリを再起動すれば自動で反映されます。" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "权限变更稍后自动生效,或重启应用。" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "API Key"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "API キー"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "API 키"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "API 密钥"
+          }
+        }
       }
     },
     "settings.autosaved" : {
       "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "자동 저장됨" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Auto-saved" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "自動保存済み" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "已自动保存" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auto-saved"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "自動保存済み"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "자동 저장됨"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已自动保存"
+          }
+        }
+      }
+    },
+    "settings.autostart_footer" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Launches DayFlow automatically at macOS login. After first registration, approval may be required in System Settings → General → Login Items."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS ログイン時に DayFlow を自動起動します。初回登録後、システム設定 → 一般 → ログイン項目で承認が必要な場合があります。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS 로그인 시 DayFlow를 자동으로 실행합니다. 첫 등록 후 시스템 설정 → 일반 → 로그인 항목에서 승인이 필요할 수 있습니다."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在 macOS 登录时自动启动 DayFlow。首次注册后,可能需要在系统设置 → 通用 → 登录项中批准。"
+          }
+        }
+      }
+    },
+    "settings.autostart_section" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auto-Start"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "自動起動"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "자동 시작"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "自动启动"
+          }
+        }
+      }
+    },
+    "settings.browse" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Browse"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "参照"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "찾기"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "浏览"
+          }
+        }
+      }
+    },
+    "settings.current_status" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Current status: %@"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "現在のステータス: %@"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "현재 상태: %@"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "当前状态: %@"
+          }
+        }
+      }
+    },
+    "settings.current_status %@" : {
+      "comment" : "A label that shows the current autostart status of the app. The argument is the current autostart status, which is either \"enabled\" or \"disabled\".",
+      "isCommentAutoGenerated" : true
+    },
+    "settings.endpoint" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "API Endpoint"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "API エンドポイント"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "API 엔드포인트"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "API 终结点"
+          }
+        }
+      }
+    },
+    "settings.excluded_dirs" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Excluded Directories"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "監視除外ディレクトリ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "변경 감시 제외 디렉토리"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "排除目录"
+          }
+        }
+      }
+    },
+    "settings.excluded_dirs_footer" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skips change events for paths whose substring matches any item here. e.g. minio data folder, temp build folder."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "パスの一部がここに一致する場合、変更イベントを記録しません。例: minio データフォルダ、一時作業フォルダ。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "경로의 일부가 이 목록에 매칭되면 변경 이벤트를 기록하지 않습니다. 예: minio 데이터 폴더, 임시 작업 폴더 등."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "如果路径包含此列表中的任一项,则跳过对应的变更事件。例如 minio 数据文件夹、临时工作目录。"
+          }
+        }
+      }
+    },
+    "settings.launch_at_login" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Launch at Login"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ログイン時に自動起動"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "로그인 시 자동 실행"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "登录时自动启动"
+          }
+        }
+      }
+    },
+    "settings.model" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Model"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "モデル"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "모델"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "模型"
+          }
+        }
+      }
+    },
+    "settings.open_system_settings" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open System Settings"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "システム設定を開く"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "시스템 설정 열기"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "打开系统设置"
+          }
+        }
+      }
+    },
+    "settings.output_path" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Output Path"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "出力パス"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "출력 경로"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "输出路径"
+          }
+        }
+      }
+    },
+    "settings.permission_footer" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Permission changes apply after a short wait or app restart."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "権限の変更は少し待つかアプリを再起動すれば自動で反映されます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "권한 변경 후 잠시 기다리거나 앱을 재시작하면 자동으로 반영됩니다."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "权限变更稍后自动生效,或重启应用。"
+          }
+        }
+      }
+    },
+    "settings.permission.accessibility" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Accessibility"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アクセシビリティ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "접근성 권한"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "辅助功能"
+          }
+        }
+      }
+    },
+    "settings.permission.calendar" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Calendar Access"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "カレンダーアクセス"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "캘린더 접근"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "日历访问"
+          }
+        }
+      }
+    },
+    "settings.permission.full_disk" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Full Disk Access"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "フルディスクアクセス"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "전체 디스크 접근"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "完全磁盘访问"
+          }
+        }
+      }
+    },
+    "settings.permission.open" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open Settings"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "設定を開く"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "설정 열기"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "打开设置"
+          }
+        }
+      }
+    },
+    "settings.permissions" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Permissions"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "権限"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "권한 상태"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "权限"
+          }
+        }
+      }
+    },
+    "settings.provider" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Provider"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "プロバイダ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "제공자"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "提供商"
+          }
+        }
       }
     },
     "settings.register_failed" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "등록 실패: %@" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Registration failed: %@" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "登録失敗: %@" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "注册失败: %@" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registration failed: %@"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "登録失敗: %@"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "등록 실패: %@"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "注册失败: %@"
+          }
+        }
       }
     },
-
-    "launch.status.enabled" : {
+    "settings.register_failed %@" : {
+      "comment" : "A label that shows an error message when the app fails to register itself for launch at login. The argument is the error message.",
+      "isCommentAutoGenerated" : true
+    },
+    "settings.summary_language" : {
       "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "활성" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Enabled" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "有効" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "已启用" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AI Summary Language"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AI 要約言語"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AI 요약 언어"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AI 摘要语言"
+          }
+        }
       }
     },
-    "launch.status.requires_approval" : {
+    "settings.summary_language_footer" : {
       "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "승인 대기" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Requires Approval" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "承認待ち" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "等待批准" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Language of AI-generated summaries. Independent of UI language."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AI が生成する要約の言語。UI 言語とは独立。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AI가 생성하는 요약문의 언어. UI 언어와 독립."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AI 生成摘要的语言,与界面语言独立。"
+          }
+        }
       }
     },
-    "launch.status.not_registered" : {
+    "settings.summary_language_picker" : {
       "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "등록 안 됨" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Not Registered" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "未登録" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "未注册" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Summary Output Language"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "要約出力言語"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "요약 출력 언어"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "摘要输出语言"
+          }
+        }
       }
     },
-    "launch.status.not_found" : {
+    "settings.tab.ai" : {
       "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "차단됨" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Blocked" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "ブロック済み" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "已阻止" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AI"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AI"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AI"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AI"
+          }
+        }
       }
     },
-
-    "status.idle" : {
+    "settings.tab.general" : {
       "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "매시간 0분에 자동 요약" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Auto-summary at the top of every hour" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "毎時 00 分に自動要約" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "每小时整点自动摘要" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "General"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "一般"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "일반"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通用"
+          }
+        }
       }
     },
-    "status.cancelled" : {
+    "settings.tab.permissions" : {
       "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "요약 취소됨" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Summary cancelled" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "要約をキャンセルしました" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "已取消摘要" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Permissions"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "権限"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "권한"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "权限"
+          }
+        }
+      }
+    },
+    "settings.tab.storage" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Storage"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ストレージ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "저장소"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "存储"
+          }
+        }
+      }
+    },
+    "settings.ui_language" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "UI Language"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "UI 言語"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "UI 언어"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "界面语言"
+          }
+        }
+      }
+    },
+    "settings.ui_language_footer" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Language for the menu bar and settings window. \"System Default\" follows the macOS language."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "メニューバーと設定画面の表示言語。\"System Default\" は macOS の言語設定に従います。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "메뉴바와 설정창의 표시 언어. \"System Default\"는 macOS 언어 설정을 따릅니다."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "菜单栏和设置窗口的显示语言。\"System Default\" 跟随 macOS 系统语言。"
+          }
+        }
+      }
+    },
+    "settings.unstable_location_warning" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "⚠ The app is running from Xcode DerivedData or a temporary folder. Move it to /Applications before registering for login startup."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "⚠ アプリは Xcode DerivedData または一時フォルダから実行中です。起動時の自動実行を有効にする前に /Applications へ移動してください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "⚠ 현재 앱이 Xcode DerivedData 또는 임시 폴더에서 실행 중입니다. /Applications로 옮긴 후 등록해야 부팅 시 정상 실행됩니다."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "⚠ 应用正在从 Xcode DerivedData 或临时文件夹运行。请先移动到 /Applications 再注册开机自启动。"
+          }
+        }
+      }
+    },
+    "settings.watched_dirs" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Watched Directories"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "監視ディレクトリ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "파일 변경 감시 디렉토리"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "监视目录"
+          }
+        }
+      }
+    },
+    "settings.watched_dirs_footer" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Records file create/modify/rename/delete events in the listed directories in real time."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "指定ディレクトリのファイル作成/変更/移動/削除をリアルタイムで記録します。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "지정된 디렉토리의 파일 생성/수정/이동/삭제를 실시간으로 기록합니다."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "实时记录所列目录的文件创建/修改/重命名/删除事件。"
+          }
+        }
+      }
+    },
+    "settings.zsh_apply_hint" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open a new terminal or run `source ~/.zshrc` to apply."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "適用するには新しいターミナルを開くか、`source ~/.zshrc` を実行してください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "적용 후 새 터미널을 열거나 `source ~/.zshrc`를 실행하세요."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "应用方式: 打开新终端或运行 `source ~/.zshrc`。"
+          }
+        }
+      }
+    },
+    "settings.zsh_explanation" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "zsh writes to its history file only when the shell exits by default. To capture commands in real time, add the following options to the end of ~/.zshrc."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "zsh はデフォルトでシェル終了時のみ履歴ファイルへ書き込みます。実行直後にリアルタイムで収集するには、~/.zshrc の末尾に以下を追加してください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "zsh는 기본적으로 셸 종료 시점에만 history 파일에 기록합니다. 명령 실행 직후 실시간으로 수집하려면 ~/.zshrc 끝에 아래 옵션을 추가하세요."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "zsh 默认仅在 shell 退出时写入历史文件。要在命令执行后立即捕获,请在 ~/.zshrc 末尾添加以下选项。"
+          }
+        }
+      }
+    },
+    "settings.zsh_realtime" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terminal Real-time Collection (zsh)"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ターミナル リアルタイム収集 (zsh)"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "터미널 실시간 수집 (zsh)"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "终端实时收集 (zsh)"
+          }
+        }
       }
     },
     "status.already_running" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "요약이 이미 진행 중입니다" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Summary already in progress" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "要約はすでに実行中です" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "摘要正在进行中" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Summary already in progress"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "要約はすでに実行中です"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "요약이 이미 진행 중입니다"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "摘要正在进行中"
+          }
+        }
       }
     },
-    "status.no_activity" : {
+    "status.cancelled" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "활동 없음 (건너뜀)" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "No activity (skipped)" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "アクティビティなし (スキップ)" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "无活动(已跳过)" } }
-      }
-    },
-    "status.generating" : {
-      "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "%@ 생성 중..." } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Generating %@..." } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "%@ を生成中..." } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "正在生成 %@..." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Summary cancelled"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "要約をキャンセルしました"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "요약 취소됨"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已取消摘要"
+          }
+        }
       }
     },
     "status.completed" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "%1$@ 완료 (%2$@)" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "%1$@ completed (%2$@)" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "%1$@ 完了 (%2$@)" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "%1$@ 完成 (%2$@)" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ completed (%2$@)"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ 完了 (%2$@)"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ 완료 (%2$@)"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ 完成 (%2$@)"
+          }
+        }
       }
     },
     "status.failed" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "%1$@ 실패: %2$@" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "%1$@ failed: %2$@" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "%1$@ 失敗: %2$@" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "%1$@ 失败: %2$@" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ failed: %2$@"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ 失敗: %2$@"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ 실패: %2$@"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ 失败: %2$@"
+          }
+        }
       }
     },
-    "status.slot_progress" : {
+    "status.generating" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "%1$@ 슬롯 %2$d/%3$d (%4$@) 생성 중..." } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "%1$@ slot %2$d/%3$d (%4$@)..." } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "%1$@ スロット %2$d/%3$d (%4$@) を生成中..." } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "%1$@ 时段 %2$d/%3$d (%4$@) 生成中..." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Generating %@..."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ を生成中..."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ 생성 중..."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在生成 %@..."
+          }
+        }
+      }
+    },
+    "status.idle" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auto-summary at the top of every hour"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "毎時 00 分に自動要約"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "매시간 0분에 자동 요약"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "每小时整点自动摘要"
+          }
+        }
+      }
+    },
+    "status.no_activity" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No activity (skipped)"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アクティビティなし (スキップ)"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "활동 없음 (건너뜀)"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无活动(已跳过)"
+          }
+        }
       }
     },
     "status.no_pending_slots" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "처리할 슬롯 없음" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "No pending slots" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "処理する時間枠なし" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "无待处理时段" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No pending slots"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "処理する時間枠なし"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "처리할 슬롯 없음"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无待处理时段"
+          }
+        }
       }
     },
-
-    "mode.hourly" : {
+    "status.slot_progress" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "매시간 요약" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Hourly summary" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "毎時要約" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "每小时摘要" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ slot %2$d/%3$d (%4$@)..."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ スロット %2$d/%3$d (%4$@) を生成中..."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ 슬롯 %2$d/%3$d (%4$@) 생성 중..."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ 时段 %2$d/%3$d (%4$@) 生成中..."
+          }
+        }
       }
     },
-    "mode.manual" : {
+    "window.date_summary_title" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "수동 요약" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Manual summary" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "手動要約" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "手动摘要" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Summarize by Date"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "日付指定で要約"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "날짜 지정 요약"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "按日期摘要"
+          }
+        }
       }
     },
-
-    "alert.permissions_title" : {
-      "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "권한이 필요합니다" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Permissions required" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "権限が必要です" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "需要授予权限" } }
-      }
-    },
-    "alert.permissions_message" : {
-      "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "DayFlow가 작동하려면 전체 디스크 접근 권한과 접근성 권한이 필요합니다." } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "DayFlow needs Full Disk Access and Accessibility permissions to work." } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "DayFlow が動作するにはフルディスクアクセスとアクセシビリティの権限が必要です。" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "DayFlow 需要完全磁盘访问和辅助功能权限才能正常工作。" } }
-      }
-    },
-    "alert.open_settings" : {
-      "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "설정 열기" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Open Settings" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "設定を開く" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "打开设置" } }
-      }
-    },
-    "alert.cancel" : {
-      "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "취소" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Cancel" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "キャンセル" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "取消" } }
-      }
-    },
-
     "window.settings_title" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "ko" : { "stringUnit" : { "state" : "translated", "value" : "DayFlow 설정" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "DayFlow Settings" } },
-        "ja" : { "stringUnit" : { "state" : "translated", "value" : "DayFlow 設定" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "DayFlow 设置" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DayFlow Settings"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DayFlow 設定"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DayFlow 설정"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DayFlow 设置"
+          }
+        }
       }
+    },
+    "복사" : {
+      "comment" : "A button that copies a snippet of code to the clipboard.",
+      "isCommentAutoGenerated" : true
     }
-  }
+  },
+  "version" : "1.1"
 }

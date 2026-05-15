@@ -1,1 +1,13 @@
 build
+.claude
+.vscode
+
+# Xcode 사용자별 IDE 상태 (열린 탭, 커서, 비공유 scheme 등) — 공유하지 않음
+xcuserdata/
+*.xcuserstate
+
+# MLX 모델 가중치는 빌드 시점에 다운로드 — 리포에 커밋하지 않음 (~3.6GB)
+MLXModels/*/*.safetensors
+MLXModels/*/*.safetensors.part
+MLXModels/*/*.json
+MLXModels/*/*.jinja

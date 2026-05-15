@@ -39,6 +39,12 @@
 		00010050 /* CalendarCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0001004F /* CalendarCollector.swift */; };
 		00010053 /* DateSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00010052 /* DateSummaryView.swift */; };
 		00010055 /* SummaryStateStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00010054 /* SummaryStateStore.swift */; };
+		C772D79F2FB5B5AB002482D8 /* MLXLMCommon in Frameworks */ = {isa = PBXBuildFile; productRef = C772D79E2FB5B5AB002482D8 /* MLXLMCommon */; };
+		C772D7A12FB5B5AE002482D8 /* MLXVLM in Frameworks */ = {isa = PBXBuildFile; productRef = C772D7A02FB5B5AE002482D8 /* MLXVLM */; };
+		C772D7A32FB5B5B3002482D8 /* MLXHuggingFace in Frameworks */ = {isa = PBXBuildFile; productRef = C772D7A22FB5B5B3002482D8 /* MLXHuggingFace */; };
+		C772D7A52FB5B5B9002482D8 /* HuggingFace in Frameworks */ = {isa = PBXBuildFile; productRef = C772D7A42FB5B5B9002482D8 /* HuggingFace */; };
+		C772D7A72FB5B5BF002482D8 /* Tokenizers in Frameworks */ = {isa = PBXBuildFile; productRef = C772D7A62FB5B5BF002482D8 /* Tokenizers */; };
+		C772D7A92FB5B67C002482D8 /* MLXSummarizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C772D7A82FB5B67C002482D8 /* MLXSummarizer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,13 +89,15 @@
 		0001004B /* IdleCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdleCollector.swift; sourceTree = "<group>"; };
 		0001004D /* SystemEventCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemEventCollector.swift; sourceTree = "<group>"; };
 		0001004F /* CalendarCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollector.swift; sourceTree = "<group>"; };
-		00010054 /* SummaryStateStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryStateStore.swift; sourceTree = "<group>"; };
 		00010051 /* DayFlow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DayFlow.entitlements; sourceTree = "<group>"; };
 		00010052 /* DateSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSummaryView.swift; sourceTree = "<group>"; };
+		00010054 /* SummaryStateStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryStateStore.swift; sourceTree = "<group>"; };
+		C772D7A82FB5B67C002482D8 /* MLXSummarizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLXSummarizer.swift; sourceTree = "<group>"; };
 		C7CD81412FB20E2700D528F7 /* DayFlowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DayFlowTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		C772D7AB2FB5C81E002482D8 /* MLXModels */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = MLXModels; sourceTree = "<group>"; };
 		C7CD81422FB20E2700D528F7 /* DayFlowTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = DayFlowTests; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
@@ -98,6 +106,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C772D7A12FB5B5AE002482D8 /* MLXVLM in Frameworks */,
+				C772D79F2FB5B5AB002482D8 /* MLXLMCommon in Frameworks */,
+				C772D7A32FB5B5B3002482D8 /* MLXHuggingFace in Frameworks */,
+				C772D7A52FB5B5B9002482D8 /* HuggingFace in Frameworks */,
+				C772D7A72FB5B5BF002482D8 /* Tokenizers in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,6 +127,7 @@
 		00010005 = {
 			isa = PBXGroup;
 			children = (
+				C772D7AB2FB5C81E002482D8 /* MLXModels */,
 				00010006 /* DayFlow */,
 				C7CD81422FB20E2700D528F7 /* DayFlowTests */,
 				C7254C842FB1EB6C00080489 /* Frameworks */,
@@ -185,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				0001002D /* AISummarizer.swift */,
+				C772D7A82FB5B67C002482D8 /* MLXSummarizer.swift */,
 				0001002F /* OpenAISummarizer.swift */,
 				00010031 /* AnthropicSummarizer.swift */,
 			);
@@ -235,10 +250,14 @@
 				00010002 /* Sources */,
 				00010003 /* Frameworks */,
 				00010004 /* Resources */,
+				C772D7AA2FB5C786002482D8 /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				C772D7AB2FB5C81E002482D8 /* MLXModels */,
 			);
 			name = DayFlow;
 			productName = DayFlow;
@@ -276,7 +295,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 2640;
-				LastUpgradeCheck = 2640;
+				LastUpgradeCheck = 2650;
 				TargetAttributes = {
 					00010001 = {
 						CreatedOnToolsVersion = 15.0;
@@ -296,8 +315,15 @@
 				ko,
 				ja,
 				"zh-Hans",
+				Base,
 			);
 			mainGroup = 00010005;
+			packageReferences = (
+				C772D79B2FB5B51E002482D8 /* XCRemoteSwiftPackageReference "mlx-swift-lm" */,
+				C772D79C2FB5B533002482D8 /* XCRemoteSwiftPackageReference "swift-huggingface" */,
+				C772D79D2FB5B543002482D8 /* XCRemoteSwiftPackageReference "swift-transformers" */,
+				C7E17C682FB6DD600001B2F5 /* XCRemoteSwiftPackageReference "mlx-swift" */,
+			);
 			productRefGroup = 00010007 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -327,6 +353,27 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		C772D7AA2FB5C786002482D8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(SRCROOT)/DayFlow/MLXModels/gemma-4-e2b-it-4bit/model.safetensors",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Scripts/download_mlx_model.sh\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		00010002 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -334,6 +381,7 @@
 			files = (
 				00010018 /* DayFlowApp.swift in Sources */,
 				0001001A /* ActivityRecord.swift in Sources */,
+				C772D7A92FB5B67C002482D8 /* MLXSummarizer.swift in Sources */,
 				0001001C /* WorkLogEntry.swift in Sources */,
 				0001001E /* AIProvider.swift in Sources */,
 				00010020 /* AppSettings.swift in Sources */,
@@ -387,6 +435,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_MODULES = YES;
@@ -414,7 +464,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -443,6 +493,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_MODULES = YES;
@@ -470,7 +522,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -480,6 +532,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -640,6 +693,73 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C772D79B2FB5B51E002482D8 /* XCRemoteSwiftPackageReference "mlx-swift-lm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ml-explore/mlx-swift-lm";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.31.3;
+			};
+		};
+		C772D79C2FB5B533002482D8 /* XCRemoteSwiftPackageReference "swift-huggingface" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/huggingface/swift-huggingface";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.0;
+			};
+			traits = (
+			);
+		};
+		C772D79D2FB5B543002482D8 /* XCRemoteSwiftPackageReference "swift-transformers" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/huggingface/swift-transformers";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.3.2;
+			};
+			traits = (
+			);
+		};
+		C7E17C682FB6DD600001B2F5 /* XCRemoteSwiftPackageReference "mlx-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ml-explore/mlx-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.31.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C772D79E2FB5B5AB002482D8 /* MLXLMCommon */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C772D79B2FB5B51E002482D8 /* XCRemoteSwiftPackageReference "mlx-swift-lm" */;
+			productName = MLXLMCommon;
+		};
+		C772D7A02FB5B5AE002482D8 /* MLXVLM */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C772D79B2FB5B51E002482D8 /* XCRemoteSwiftPackageReference "mlx-swift-lm" */;
+			productName = MLXVLM;
+		};
+		C772D7A22FB5B5B3002482D8 /* MLXHuggingFace */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C772D79B2FB5B51E002482D8 /* XCRemoteSwiftPackageReference "mlx-swift-lm" */;
+			productName = MLXHuggingFace;
+		};
+		C772D7A42FB5B5B9002482D8 /* HuggingFace */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C772D79C2FB5B533002482D8 /* XCRemoteSwiftPackageReference "swift-huggingface" */;
+			productName = HuggingFace;
+		};
+		C772D7A62FB5B5BF002482D8 /* Tokenizers */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C772D79D2FB5B543002482D8 /* XCRemoteSwiftPackageReference "swift-transformers" */;
+			productName = Tokenizers;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 00010000 /* Project object */;
 }

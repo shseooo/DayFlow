@@ -157,6 +157,9 @@ class ScheduleService: ObservableObject {
 
         let task = Task { [weak self] in
             guard let self = self else { return }
+            // 배치가 어떻게 끝나든(성공/취소/실패) in-process 모델은 해제.
+            // HTTP provider 에는 no-op.
+            defer { Task { await self.summarizationService.releaseResources() } }
             do {
                 let processed = try await SummaryExecutor.runHourlySlots(
                     through: endTime ?? Date(),
@@ -165,7 +168,8 @@ class ScheduleService: ObservableObject {
                     summarizationService: self.summarizationService,
                     settings: self.settings,
                     onStatus: { [weak self] message in
-                        await MainActor.run { self?.statusMessage = message }
+                        guard let self else { return }
+                        await MainActor.run { self.statusMessage = message }
                     }
                 )
                 await MainActor.run {

@@ -268,17 +268,25 @@ private struct AISettingsTab: View {
                         .onChange(of: model.tempApiKey) { _, _ in model.autosave() }
                 }
 
-                TextField("settings.model", text: $model.tempModel)
-                    .textFieldStyle(.roundedBorder)
-                    .focused($modelFieldFocused)
-                    .onChange(of: model.tempModel) { _, _ in model.autosave() }
-                    .onChange(of: modelFieldFocused) { _, focused in
-                        guard !focused else { return }
-                        let trimmed = model.tempModel.trimmingCharacters(in: .whitespacesAndNewlines)
-                        if trimmed != model.tempModel {
-                            model.tempModel = trimmed
+                if model.tempProviderType.supportsCustomModel {
+                    TextField("settings.model", text: $model.tempModel)
+                        .textFieldStyle(.roundedBorder)
+                        .focused($modelFieldFocused)
+                        .onChange(of: model.tempModel) { _, _ in model.autosave() }
+                        .onChange(of: modelFieldFocused) { _, focused in
+                            guard !focused else { return }
+                            let trimmed = model.tempModel.trimmingCharacters(in: .whitespacesAndNewlines)
+                            if trimmed != model.tempModel {
+                                model.tempModel = trimmed
+                            }
                         }
+                } else {
+                    LabeledContent("settings.model") {
+                        Text(model.tempProviderType.defaultModel)
+                            .font(.system(.body, design: .monospaced))
+                            .foregroundStyle(.secondary)
                     }
+                }
             }
 
             Section {

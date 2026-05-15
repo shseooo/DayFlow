@@ -8,6 +8,14 @@ protocol AISummarizer {
         period: DateInterval,
         outputLanguage: String
     ) async throws -> String
+
+    /// 무거운 리소스(예: in-process 모델 가중치) 를 해제한다.
+    /// HTTP 기반 요약기는 no-op. 배치(여러 슬롯) 요약이 끝난 뒤 호출.
+    func releaseResources() async
+}
+
+extension AISummarizer {
+    func releaseResources() async {}
 }
 
 // MARK: - SummaryPromptBuilder
